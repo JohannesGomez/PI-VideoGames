@@ -36,8 +36,8 @@ const { Videogames, Genres } = sequelize.models; // Modelos de sequelize las tab
 // Product.hasMany(Reviews);
 console.log(Videogames)
 console.log(Genres)
-  Videogames.belongsToMany(Genres, {through : 'VideogamesGenres'}); // tabla intermedia
-  Genres.belongsToMany(Videogames, {through : 'VideogamesGenres'}); // tabla intermedia
+  Videogames.belongsToMany(Genres, {through : 'Videogames_Genres'}); // tabla intermedia
+  Genres.belongsToMany(Videogames, {through : 'Videogames_Genres'}); // tabla intermedia
 
 
 module.exports = {

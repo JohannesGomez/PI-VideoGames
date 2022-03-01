@@ -1,5 +1,5 @@
 const axios = require('axios');
-const {getVideoGameApi, getVideoGamesCreate} = require('./Services');
+const {getVideoGamesApi, getVideoGamesBd} = require('./Services');
 const { Router } = require('express');
 const {Videogames,Genres} = require('../db') // traer mi modelo
 const router = Router();
@@ -11,6 +11,7 @@ const router = Router();
 // __POST /videogame__: - Recibe los datos recolectados desde el formulario controlado 
 //  de la ruta de creación de videojuego por body, - Crea un videojuego en la base de datos
 router.post('/', async (req, res, next) => {
+  console.log('estoy en post')
   const {name, description, released, plataforms, rating, image, idGenres} = req.body 
   try {
       let creaAct = await Videogames.create({ 
@@ -29,15 +30,18 @@ router.post('/', async (req, res, next) => {
 //__GET /videogames__: Obtener un listado de los videojuegos API / Debe devolver solo los datos necesarios para la ruta principal
 router.get('/', async (req, res, next) => {
   let {name} = req.query // obtener el nombre del video juego a buscar mostrar solo primeros 15 v.j
+  console.log('estoy en el back get /videogames', req.query)
   try {   
-      let allVideoGamesCreate = await getVideoGamesCreate(); // traer todos los V.G. creado en la app
-      let allVideoGamesApi    = await getVideoGameApi();     // __GET /videogames__: Obtener un listado de los videojuegos
-      let videoGamesApiyBd    =  (allVideoGamesCreate.concat(allVideoGamesApi))
+      let allVideoGamesApi     = [] //npmawait getVideoGamesApi(); // traer todos los V.G. API
+      let allVideoGamesBd      = await getVideoGamesBd(); // traee
+      let allVideoGamesApiyBd  = [...allVideoGamesApi, ...allVideoGamesBd]; // todos los v.g. api y bd
       if(name) { // __GET /videogames?name="..."__: Obtener un listado de las primeros 15 videojuegos y un mesaje si no existe
-        let videoGamesApiAux = videoGamesApiyBd.filter((ele) => ele.name.toLowerCase().includes(name.toLowerCase()))
-        return videoGamesApiAux.length?res.status(200).send(videoGamesApiAux.slice(0,16)):res.status(404).send('Name of Video Game Not Found');
-      } 
-      return res.status(200).send(videoGamesApiyBd) // retornar un solo array api externa y bd
+         console.log('// __GET /videogames?name="..."__: Obtener un listado de las primeros 15 videojuegos y un mesaje si no existe')
+         let videoGamesApiAux = allVideoGamesApiyBd.filter((ele) => ele.name.toLowerCase().includes(name.toLowerCase()))
+         return videoGamesApiAux.length?res.status(200).send(videoGamesApiAux.slice(0,16)):res.status(404).send('Name of Video Game Not Found');
+       } 
+      console.log('// __GET /videogames Listado de todos video games ap y bd')
+      return res.status(200).send(allVideoGamesApiyBd) // retornar todos los v.g. api y bd
   }catch(error) {next(error)}
 })
 

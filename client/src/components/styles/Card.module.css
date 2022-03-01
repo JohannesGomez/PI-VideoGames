@@ -1,0 +1,45 @@
+
+.Card {
+    list-style: none;   /*eliminar los puntos de la lista <li>*/
+    font-size : 1rem;   /*el titulo pelicula un poco mas grande*/
+    font-style: italic;
+    font-weight: 1000;
+    text-align: center;
+
+}
+
+.Image {
+    border-radius: 20px;       /*borde imagen bordeado*/
+    background-color: azure; /*antes que la imagen se cargue tenga un fondo*/
+}
+
+.name {
+    font-size:10vh
+}
+.countryCard:hover {
+    opacity: 0.8;
+}
+
+.countryImage {
+    border-radius   : 15px;    /*borde imagen bordeado*/
+    background-color: azure; /*antes que la imagen se cargue tenga un fondo*/
+
+}
+
+.buttondetail{
+    border: 4px solid rgba(128, 128, 128, 0.986);
+    background-color: white;
+    border-radius: 5px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 15px;
+}
+
+@media (max-width: 560px) {
+    .countryImage {
+        width: 90%;
+        height: auto;
+    }
+  }

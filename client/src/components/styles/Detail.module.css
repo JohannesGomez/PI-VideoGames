@@ -1,0 +1,64 @@
+.detailbackground{
+    /* background-image: url("http://s3.amazonaws.com/storage.wobiz.com/54/54733/images/Large/1624898101_0ab9c463cf6e95d173e3f96808e10719.54733.jpeg"); */
+      
+    
+    background-attachment: fixed;
+    
+        background-position-y: 0%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 150%;
+        opacity: 1;
+        position: absolute;
+        top: 0px;
+        transition: opacity 0.3s linear 0s;
+        width: 100%;
+    }
+
+.cardDetail{
+
+
+    padding: 15px 10px;
+    text-align: center;
+    
+
+    margin: 100px;
+    width: 500px;
+    height: 900px;
+    background-color:#F4F4F4;
+    border-radius: 30px;
+    position: relative;
+    border: 2px solid rgba(128, 128, 128, 0.986);
+    opacity: 0.8;
+}
+
+.countryImage {
+    border-radius   : 20px;    /*borde imagen bordeado*/
+    background-color: azure; /*antes que la imagen se cargue tenga un fondo*/
+
+}
+
+.imgdetailstyle{
+    width: 320px;
+    height: 213px;
+    border-radius: 15px;
+    /* padding-left: 50px;
+    padding-right: 50px; */
+}
+
+.carddetail2{
+    flex-direction: row;
+    display: inline-block;
+    
+}
+
+.buttonreturn{
+    
+    border: 1px solid rgba(128, 128, 128, 0.986);
+    background-color: white;
+    border-radius: 5px;
+    margin: 200px;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 20px;
+}

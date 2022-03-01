@@ -1,0 +1,99 @@
+.fondoform{
+
+     background-image: url('https://i.ytimg.com/vi/wzq9ZrfjiBc/maxresdefault.jpg');  
+     background-attachment: fixed; 
+     background-position-y: 0%; 
+     background-repeat: no-repeat; 
+     background-size: cover; 
+     height: 100%; 
+     opacity: 1; 
+     position: absolute; 
+     top: 0px; 
+     transition: opacity 0.3s linear 0s; 
+     width: 50%; 
+     padding: 100px 550px;  
+    
+}
+
+.divform{
+    
+    border-radius: 20px;
+    font-size: 20px;
+    font-style: normal;
+    line-height: 120%;
+    display: block;
+    background-color:rgb(151, 180, 243);
+    opacity: 0.9;
+    
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight:lighter;
+    padding: 100px;
+    text-align: center;
+}
+
+.h1{
+    padding: 10px;
+    font-family:'Gill Sans';
+    font-weight: lighter;
+    color:black;
+}
+
+.h2{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.div{
+    padding: 20px;
+    padding-right: 0px;
+    text-align: left;
+}
+.p{
+    padding: 0px;
+    font-size: 15px; 
+    text-align: left;
+}
+
+.inputAct{
+    width: 50%;
+    padding-left: 5px;
+    border-radius: 10px;
+    background-color:rgb(194, 194, 252);
+    border: 0px;
+    font-size: 18px;
+    color:black;
+}
+.countryActivity {
+    list-style: none;   /*eliminar los puntos de la lista <li>*/
+    font-size : 1rem;   /*el titulo */
+    font-style: italic;
+    font-weight: 1000; 
+    text-align:left;
+    grid-row: auto;
+    color: blue;
+
+}
+
+.buttonAdd{
+    border: 2px solid rgba(128, 128, 128, 0.986);
+    background-color: white;
+    border-radius: 5px;
+    margin: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 15px;
+
+}
+
+.buttonReturn{
+    border: 2px solid rgba(128, 128, 128, 0.986);
+    background-color: white;
+    border-radius: 5px;
+    margin: 10px;
+    /* padding-left: 30px;
+    padding-right: 30px; */
+    font-size: 15px;
+}
+

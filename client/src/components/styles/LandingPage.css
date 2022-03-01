@@ -1,0 +1,77 @@
+.All {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 96vh;
+    letter-spacing: 1px;
+}
+
+.landing{
+    min-width: 40%;
+    min-height: 500px;
+    justify-content: space-evenly;
+    border-radius: 40px;
+}
+.landing h1{
+    font-size: 50px;
+    margin-top: 80px;
+}
+.landing p{
+    color: #5B5B5B;
+    font-size: 22px;
+    line-height: 2;
+    margin-bottom: 70px;
+}
+.landing button {
+    width: 120px;
+    height: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: lightskyblue;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 2px 4px 8px 2px lightskyblue;
+}
+.landing button:active{
+    width: 118px;
+    height: 48px;
+}
+.landing button:hover{
+    font-size: 20px;
+}
+.img{
+    border-radius: 100px;
+    width: 40%;
+    height: 90%;
+    background-image: url('https://previews.123rf.com/images/raevsky/raevsky1503/raevsky150300244/37833249-plantilla-de-mapa-del-mundo-en-perspectiva-sobre-fondo-gris-para-el-dise%C3%B1o-de-negocio-o-sitio-web.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+hr {
+    margin:0 ;
+    padding: 0;
+}
+h5 {
+    margin: 5px;
+}
+.footer{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100vw;
+    height: 36px;
+    background-color: #EEEEEE;
+}
+.logo {
+    margin-top: 2px;
+    margin-left: 4px;
+    height: 15px;
+}

@@ -1,0 +1,57 @@
+/*genere columna de forma automatica*/
+/*y un ancho de 230px*/
+/* gap = separacion de 40 px entre los elementos*/
+/* padding = separacion elementos y el borde de la pagina*/
+/* justify-content= que esten centrado los elementos en el contenido*/
+.Grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 290px);
+    gap:40px;
+    padding: 85px;
+    justify-content:space-evenly;
+
+}
+
+@media (max-width: 560px) {
+  .Grid {
+      grid-template-columns: 100%;
+  }
+}
+
+/* display : flex ; muestra los elemento ordenados por columna*/
+/* flex-direction: column; muestre los elmentos ordenados por culumna */
+.contenedor {
+    border         : rgba(139, 139, 139, 0.685) solid 1px;    
+    border-radius  : 5px;
+    display        : flex;  
+    flex-direction : column;
+    width          : 300px;
+    height         : 175px;
+    position       : relative; /*asignarle posicion del padre*/
+
+}
+
+.infoCont {
+   display         : flex;         /* display: flex; mostrar la info en fila*/
+   flex-direction   :row;
+   margin-top      : auto;         /* Centrarlo */     
+   margin-bottom   : auto;         /* Centrarlo */     
+}
+
+.infoCont img {
+   background-color: rgba(0, 0, 0, 0.404);
+   border-radius: 2px;
+}
+
+.btn {
+   height           : min-content;  /*ajustar al contenido*/
+   width            : min-content;  /*ajustar al contenido*/
+   background-color : lightcoral; /*color al boton*/
+   position         : absolute;     /* posicionar respecto al primer padre */
+   right            : 5px;
+   top              : 5px;
+   border           : none;
+   border-radius    : 3px;
+   color            : white; /*colo al contenido*/
+
+}

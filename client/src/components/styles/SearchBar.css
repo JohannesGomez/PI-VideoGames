@@ -1,0 +1,38 @@
+.input{
+    width: 200px;
+    height: 28px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.616);
+    outline: none;
+    margin-right: 5px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 4px;
+    
+}
+::placeholder {
+    color: white;
+    font-size: 16px;
+}
+.input:hover{
+    background-color: rgba(0, 0, 0, 0.835);
+}
+.input:focus{
+    background-color: rgba(0, 0, 0, 0.835);
+}
+.searchButton {
+    width: 70px;
+    height: 30px;
+    background-color: #406343;
+    color: white;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.searchButton:active{
+    width: 68px;
+    height: 28px;
+}
