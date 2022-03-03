@@ -27,7 +27,7 @@ export default function SearchBar(){
            dispatch(getVideoGame(name))  // name es el estado local
            setName('')  // setaer mi estado local
            //document.getElementById("search").value='' //?????
-        }else{ return alert('Name not cant not Empty!')}
+        }else{ return alert('Name cant not Empty!')}
 
     }
     

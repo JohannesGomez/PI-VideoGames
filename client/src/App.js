@@ -1,7 +1,7 @@
 import React       from 'react';
 import { Route } from 'react-router-dom';
 import Home from './components/Home';
-//import LandingPage from './components/LandingPage';
+import LandingPage from './components/LandingPage';
 import './App.css';
 // import NavBar from './components/NavBar';
 // import VgDetail from './components/VgDetail';
@@ -15,10 +15,10 @@ function App() {
   return (
     <React.Fragment>
       {/* <NavBar /> */}
-      {/* <Route exact path  = '/'                  component = {LandingPage}/> */}
-      <Route exact path  = '/'                       component = {Home}/>
-      {/* <Route exact path  = '/videogame/:idVideogame' component = {VideoGameDetail}/>
-      <Route exact path  = '/VideoGameCreate'        component = {VideoGameCreate}/> */}
+      <Route exact path  = '/'                       component = {LandingPage}/> 
+      <Route exact path  = '/Home'                   component = {Home}/>
+      <Route exact path  = '/videogame/:idVideogame' component = {VideoGameDetail}/>
+      {/* <Route exact path  = '/VideoGameCreate'        component = {VideoGameCreate}/>  */}
       </React.Fragment>
   );
 }
