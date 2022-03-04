@@ -30,12 +30,11 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Videogames, Genres } = sequelize.models; // Modelos de sequelize las tablas que se crearon
+const { Videogames, Genres, Plataforms } = sequelize.models; // Modelos de sequelize las tablas que se crearon
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
-console.log(Videogames)
-console.log(Genres)
+console.log(Videogames, ' ', Genres, ' ', Plataforms)
   Videogames.belongsToMany(Genres, {through : 'Videogames_Genres'}); // tabla intermedia
   Genres.belongsToMany(Videogames, {through : 'Videogames_Genres'}); // tabla intermedia
 

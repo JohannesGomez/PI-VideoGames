@@ -2,14 +2,15 @@ import { useState, useEffect } from "react"; // Hooks
 import {useDispatch, useSelector} from 'react-redux';
 import { getVideoGame, getAllGenres,filterGenres,
          filterDbOrCrea, sortBy } from "../actions"; // importar la accion
-import Card from "./Card";
-import Paginado from "./Paginado";
-import {Link} from 'react-router-dom';
-import SearchBar from "./SeachBar";
-import stylesHome   from './styles/Home.module.css';
-import stylesFilter from './styles/Filters.module.css'
-import stylesGrid from './styles/Grid.module.css';
+import VideoGameCard from './VideoGameCard';
+import Paginado      from './Paginado';
+import {Link}        from 'react-router-dom';
+import SearchBar     from "./SeachBar";
+import stylesHome    from './styles/Home.module.css';
+import stylesFilter  from './styles/Filters.module.css'
+import stylesGrid    from './styles/Grid.module.css';
 
+//console.log('VideoGameCard ',VideoGameCard)
 /*
   que tengo que traerme de back primero para hacer toda la logica de la barra de busqueda ?
   traer la ruta de name..la logica en la accion
@@ -44,12 +45,12 @@ export default function Home() {
     useEffect (()=> {
       console.log('cambio mi estado GENEROS')
       dispatch(getAllGenres());
-    },[]);   //
+    },[dispatch]);   //
 
   // Traer del estado global mis paises cuando el componente de monta
     useEffect (()=> {
         dispatch(getVideoGame('')); // ejecutar la accion de forma invocada  // mapDispatchToProps
-    },[]);   // se incluye en el arreglo lo que depende de componente didmount
+    },[dispatch]);   // se incluye en el arreglo lo que depende de componente didmount
             // te montas siempre cuando suceda esto
    
   // filtrado por generos
@@ -149,7 +150,7 @@ export default function Home() {
                   <ul className={stylesGrid.Grid}> {/*elemento padre */}
                      {   
                          VideoGamesCurrent?.map((ele) =>  (
-                         <Card key={ele.id}
+                         <VideoGameCard key={ele.id}
                           idVideogame = {ele.id}     // id   
                           name        = {ele.name}   // name
                           rating      = {ele.rating} // rating o clasificacion

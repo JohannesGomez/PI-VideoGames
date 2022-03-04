@@ -1,6 +1,7 @@
 import axios from 'axios';
 export const GET_ALL_VIDEOGAME     = 'GET_ALL_VIDEOGAME';  // Traerme todos los video games
 export const GET_DETAIL_VIDEOGAME  = 'GET_ID_VIDEOGAME'    // Traerme video games por id
+export const INIT_DETAIL_VIDEOGAME = 'INIT_DETAIL_VIDEOGAME' // inicializar el detalle del v.j
 // 
 export const GET_ALL_GENRES        = 'GET_ALL_GENRES';     // Traerme todos los video ganes
 // filtros
@@ -36,6 +37,11 @@ export function getIdVideoGame(idVideGame){
     const getIdVideoGame = await axios.get(`http://localhost:3001/api/videogames/${idVideGame}`)
     return dispatch({type:GET_DETAIL_VIDEOGAME, payload: getIdVideoGame.data})
   }
+};
+
+// Inicializar el detalle del video juegos en el estado global
+export function getInitDetailVG(){
+    return ({type:INIT_DETAIL_VIDEOGAME})
 };
 
 // Filtrado por Generos 

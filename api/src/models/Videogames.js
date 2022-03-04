@@ -21,7 +21,7 @@ module.exports = (sequelize) => { // defini la entidad
     rating     : {
                  type: DataTypes.STRING,
                  allowNull: true,},
-    plataforms : { // plataformas
+    platforms  : { // plataformas
                  type: DataTypes.ARRAY(DataTypes.STRING),
                  allowNull: false,},
     image      : { // imagen
