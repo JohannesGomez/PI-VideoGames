@@ -1,15 +1,20 @@
 const { Router } = require('express');
 const videogames = require('./videogames')
-const genres   = require('./genres')
+const videogame  = require('./videogame')
+const platforms  = require('./platforms')
+const genres     = require('./genres')
+
 
 
 const router = Router();
 
 // mildelword
-//console.log(videogames)
+//console.log(videogame)
 //console.log(TypesRoute)
 
-router.use('/videogames', videogames); // /api/Pokemos/* todo lo que tenga adentro
+router.use('/videogames', videogames); 
+router.use('/videogame',videogame); 
+router.use('/platforms',platforms);
 router.use('/genres',genres);
 
 

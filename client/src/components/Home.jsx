@@ -9,6 +9,7 @@ import SearchBar     from "./SeachBar";
 import stylesHome    from './styles/Home.module.css';
 import stylesFilter  from './styles/Filters.module.css'
 import stylesGrid    from './styles/Grid.module.css';
+import VideoGameCreate from "./VideoGameCreate";
 
 //console.log('VideoGameCard ',VideoGameCard)
 /*
@@ -19,9 +20,10 @@ import stylesGrid    from './styles/Grid.module.css';
 export default function Home() {
     
     const dispatch      = useDispatch(); // declara la constante dispacth y asi despachar las acciones
-    const VideoGamesAll = useSelector((state) => state.videoGamesAllSG); // Traer toda la data de paises de mi estado global / mapStateToProps
+    const videoGamesSL = useSelector((state) => state.videoGamesSG); // Traer toda la data de paises de mi estado global / mapStateToProps
     const genresAll = useSelector((state) => state.genresSG); // Traer toda la data de paises de mi estado global / mapStateToProps
-    console.log('HOME TODOS VJ',VideoGamesAll)
+    const errorSL = useSelector((state) => state.errorSG); // Traer toda la data de paises de mi estado global / mapStateToProps
+    //console.log('HOME TODOS VJ',videoGamesSL)
 
     // Ordenamiento
     const [filters, setFilters] = useState('') // se crea un estado local para el ordenamiento name country
@@ -35,27 +37,32 @@ export default function Home() {
  
       const indexOfLastCard   = currentPage * videoGamesPerPage       // 6 // por la cantidad de personajes por pagina. 
       const indexOfFirstCard  = indexOfLastCard - videoGamesPerPage   //0 // indice del primer elemento
-      const VideoGamesCurrent = VideoGamesAll.slice(indexOfFirstCard,indexOfLastCard)     
+      const VideoGamesCurrent = videoGamesSL.slice(indexOfFirstCard,indexOfLastCard)     
 
-      const paginado = (pageNumber) => {
+     const paginado = (pageNumber) => {
         setCurrentPage(pageNumber)
-     }               
+     }        
 
-     // Traer del estado global mis paises cuando el componente de monta
-    useEffect (()=> {
-      console.log('cambio mi estado GENEROS')
-      dispatch(getAllGenres());
-    },[dispatch]);   //
+    // function  errorSearch() { // Object.keys(isError).length>0
+    //   console.log(errorSL)
+    //    if(Object.keys(errorSL).length>0) {
+    //      alert('Video Gamers Not Found!')
+    //   }else {
 
-  // Traer del estado global mis paises cuando el componente de monta
+    //   }
+    // }
+    
+
+  
     useEffect (()=> {
+        dispatch(getAllGenres());
         dispatch(getVideoGame('')); // ejecutar la accion de forma invocada  // mapDispatchToProps
     },[dispatch]);   // se incluye en el arreglo lo que depende de componente didmount
             // te montas siempre cuando suceda esto
    
   // filtrado por generos
   function handleFilterGenres(e) {
-     console.log(e.target.value)
+     //console.log(e.target.value)
      dispatch(filterGenres(e.target.value))
   }
 
@@ -74,13 +81,13 @@ export default function Home() {
 
     return (
         <div>
-           {/* Menu de Navegacion*/}
+           {/* Menu de Navegacion para solo creacion de video games*/}
             <nav className={stylesHome.navbar}>
                  <div className={stylesHome.create}>
-                     <Link to='/CreateVideoGame'><button className={stylesFilter.createButton}>Create Video Games</button></Link>
+                     <Link to='/videoGameCreated'><button className={stylesFilter.createButton}>Created Video Games</button></Link>
                 </div>
-                
             </nav>
+
             {/* Procesos de Filtrados por Generos y Video Juegos Creados en la app*/}
             <div className={stylesFilter.filters}>
                     {/* Filtrar videos games por Generos*/}
@@ -130,24 +137,33 @@ export default function Home() {
                </div>
                {/* fin del proceso de filtro y ordenamiento */}
 
-            {/* Renderizar el componente de Paginado y le paso el estado de mi pagona
-                  VideoGamesPerPage =  pasa el estado declarado arriba de cartas por pagina
-                  VideoGamesAll =  pasa el valor numerico de toda mi informacion del arreglo 
-                  paginado     =  pasa mi constante paginado
-            */}
-            <div className={stylesHome.pages}>
-               <Paginado 
-                         videoGamesPerPage = {videoGamesPerPage}    /* cantidad card x pagina */
-                         videoGamesLength  = {VideoGamesAll.length}  /* total VideoGames por pagina  */
-                         paginado          = {paginado}/>
-
             {/* El  S e a c h B a r */}
             <SearchBar/>
-            
+      {/* {Object.keys(errorSL).length>0?alert('Video Gamers Not Found!'):''} */}
+      {/* {errorSearch()} */}
+            {/* {
+              errorSL.error?alert(errorSL.error) : ''
+            } */}
+            {videoGamesSL[0]==='error' && 
+              //<div>"vg not found!"</div>
+              <VideoGameCreate />
+            }
+            {/* Renderizar el componente de Paginado y le paso el estado de mi pagona
+                  VideoGamesPerPage =  pasa el estado declarado arriba de cartas por pagina
+                  videoGamesSL =  pasa el valor numerico de toda mi informacion del arreglo 
+                  paginado     =  pasa mi constante paginado
+            */}
+            <div
+             className={stylesHome.pages}>
+               <Paginado 
+                         videoGamesPerPage = {videoGamesPerPage}    /* cantidad card x pagina */
+                         videoGamesLength  = {videoGamesSL.length}  /* total VideoGames por pagina  */
+                         paginado          = {paginado}/>
             </div>
+            
                  {/* Tomar solo aquellas cartas que me devuelve el paginado  */}
                  {/* <div className={styles.Card}> */}
-                  <ul className={stylesGrid.Grid}> {/*elemento padre */}
+                     <ul className={stylesGrid.Grid}> {/*elemento padre */}
                      {   
                          VideoGamesCurrent?.map((ele) =>  (
                          <VideoGameCard key={ele.id}
@@ -159,7 +175,7 @@ export default function Home() {
                          /> 
                        ))
                        } 
-                   </ul>
+                  </ul>
             </div>
     )
 }

@@ -16,7 +16,7 @@ module.exports = (sequelize) => { // defini la entidad
                  type: DataTypes.STRING,
                  allowNull: false,},
     released   : { // fecha de lanzamiento
-                 type: DataTypes.STRING,
+                 type: DataTypes.DATE,
                  allowNull: true,},
     rating     : {
                  type: DataTypes.STRING,
@@ -26,7 +26,7 @@ module.exports = (sequelize) => { // defini la entidad
                  allowNull: false,},
     image      : { // imagen
                  type: DataTypes.STRING,
-                 allowNull: false,},
+                 allowNull: true,},
     created    : { // determina los creado en al app por defecto true
                   type: DataTypes.BOOLEAN,
                   allowNull: false,

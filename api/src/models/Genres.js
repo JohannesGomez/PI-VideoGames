@@ -8,8 +8,8 @@ module.exports = (sequelize) => {  // definir mi entidades
   // defino el modelo
   sequelize.define('genres', { // tabla de Generos
     name : { // nombre del genero
-           type: DataTypes.STRING,
-           allowNull: false,},
+            type: DataTypes.STRING,
+            allowNull: false,},
     });
 };
 

@@ -5,6 +5,14 @@ import { getIdVideoGame, getInitDetailVG } from '../actions'
 import { useEffect } from "react";
 import Styles from './styles/Detail.module.css';
 
+// var date = new Date("2013-02-20");
+ function formatDate(date1){
+     var date = new Date(date1);
+     let formatted_date = (date.getDate()+1) + "-" + (date.getMonth() + 1) + "-" + date.getFullYear()
+     console.log(formatted_date)
+ return formatted_date;
+ }
+
 /* Componente funcional Para mostrar el Detall del Video Juego por ID */
 export default function VideoGameDetail(){
     let videoGamesDetailSL = useSelector((state)=> state.videoGamesDetailSG) // detalle VideoGame por id del estado global
@@ -27,7 +35,7 @@ export default function VideoGameDetail(){
                         <h3>{`Id : ${videoGamesDetailSL.id} Name : ${videoGamesDetailSL.name}`}</h3>
                         <img className={Styles.imgdetailstyle} src={videoGamesDetailSL.image} alt={'img not found'} />
                         <h5>{`Descriptión : ${videoGamesDetailSL.description}`}</h5>
-                        <h5>{`Released    : ${videoGamesDetailSL.released}`}</h5>
+                        <h5>{`Released    : ${formatDate(videoGamesDetailSL.released)}`}</h5>
                         <h5>{`Rating      : ${videoGamesDetailSL.rating}`}</h5>   
                         <h5>{`Platforms  :  ${videoGamesDetailSL.platforms.map(ele => ' '+ele)}`} </h5>
                         <h5>{`Genres     :  ${videoGamesDetailSL.genres.map(ele => ' '+ele)}`}</h5> 

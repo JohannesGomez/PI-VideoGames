@@ -1,11 +1,12 @@
 import React from 'react';
 import {useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getVideoGame }         from '../actions';
+import { getVideoGame, getVideoGameSearch }         from '../actions';
 
 export default function SearchBar(){
     
     const dispatch = useDispatch()
+  //  const erroresSL = useSelector((state) => state.errorSG); // Traer toda la data de paises de mi estado global / mapStateToProps
     const [name, setName] = useState('')
     
 //    let msgSG  = useSelector((state) => state.message); // Traer toda la data de paises de mi estado global / mapStateToProps
@@ -19,15 +20,14 @@ export default function SearchBar(){
         
     }
 
-    
+   
     function handleSubmit(e) {
         e.preventDefault()
         if(name) { // si incluyo el name buscar los video juego
-           console.log('paso por name ', name) 
            dispatch(getVideoGame(name))  // name es el estado local
+           //console.log('paso por name ', erroresSL) 
            setName('')  // setaer mi estado local
-           //document.getElementById("search").value='' //?????
-        }else{ return alert('Name cant not Empty!')}
+        }else{ return alert('Name cant not Empty!', name)}
 
     }
     

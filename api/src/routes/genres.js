@@ -2,6 +2,7 @@ const axios = require('axios');
 const { Router } = require('express');
 const {Genres,VideoGames} = require('../db') // traer mi modelo de generos
 const router = Router();
+const { KEY_API } = process.env; // clave api externa
 
 
 
@@ -10,9 +11,10 @@ const router = Router();
  */
  const GenresCreateBd = async () => {   
     const GenresBd = await Genres.findAll(); 
-    if(!GenresBd){ // si no existe generos buscarlo en la api y rear la bd con la info
+    //console.log('estoy GenresCreateBd ', GenresBd)
+    if(GenresBd.length===0){ // si no existe generos buscarlo en la api y rear la bd con la info
         console.log('estoy GenresCreateBd por primera vez ', GenresBd)
-        let GenresBd2 = await axios.get('https://api.rawg.io/api/genres?key=39307bdabb8c4602a5eb072b33ab8fbb');
+        let GenresBd2 = await axios.get(`https://api.rawg.io/api/genres?key=${KEY_API}`);
         GenresBd = GenresBd2.data.results.map(ele => {
         Genres.findOrCreate({where: {name : ele.name}})
         });
@@ -30,6 +32,6 @@ router.get('/', async (req,res, netx) => {
  }catch(error) {netx(error)}
 })
 
-GenresCreateBd(); // Crear la base de datos Generos y luego utilizarla desde su B.D.
+//GenresCreateBd(); // Crear la base de datos Generos y luego utilizarla desde su B.D.
 
 module.exports = router;

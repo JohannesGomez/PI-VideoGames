@@ -1,31 +1,41 @@
 const axios = require('axios')
-const videogames = require('./videogames')
-const genres     = require('./genres')
-const { Videogames, Genres} = require('../db.js')
+const videogames = require('../videogames')
+const genres     = require('../genres')
+const { Videogames, Genres} = require('../../db.js')
+require('dotenv').config();
+const { KEY_API } = process.env; // clave api externa
+
+
 
 // __GET /videogames__: Obtener un listado de los videojuegos
 const getVideoGamesApi = async () => {
-     //console.log('Srevices getVideoGamesApi')
+        console.log('estoy back Utiles /videogames getVideoGamesApi ',KEY_API)
+        
+
         let videoGamesApi = [] // guardará en array todos los v.j de la api
-        let nexturl = 'https://api.rawg.io/api/games?key=39307bdabb8c4602a5eb072b33ab8fbb' // endpoint toda la data api
-        let TotalDatosApi = 1 // contador total registro a agregar o traer de la api
-        while (TotalDatosApi < 35) { // determina cantidad registro que se debe  traer de la api
+        let nexturl = `https://api.rawg.io/api/games?key=${KEY_API}` // endpoint toda la data api
+
+        let cantRegApi    = 10  // Limited o cantidad de registro traer de la api externa
+        let totalDatosApi = 0   // contador total registro a agregar o traer de la api
+        while (totalDatosApi<cantRegApi) { // determina cantidad registro que se debe  traer de la api
                 let allVideoGames = await axios.get(nexturl);
                 allVideoGames.data.results.map( eleApi => { // voy a la info de la api para ingresar a la data especifica y mapeo los objetos dentro del array results
-                TotalDatosApi++       
-                videoGamesApi.push({     // agregar la nueva registro al arreglo
-                id        : eleApi.id,                // id 
-                name      : eleApi.name,              // nombre
-                image     : eleApi.background_image,  // en lo de otros dice brack_ground
-                released  : eleApi.released,          // Fecha de lanzamiento
-                rating    : eleApi.rating,            // clasificacion
-                genres    : eleApi.genres.map(ele => ele.name),                 // mapear los generos
-                //genres    : {name : eleApi.genres.map(ele => ele.name)},                 // mapear los generos
-                platforms : eleApi.platforms.map(ele=> ele.platform.name)}) // mapear las plataformas
+                    totalDatosApi++ // determinar el total de datos de la api
+                    if(totalDatosApi<=cantRegApi){
+                        videoGamesApi.push({     // agregar la nueva registro al arreglo
+                        id        : eleApi.id,                // id 
+                        name      : eleApi.name,              // nombre
+                        image     : eleApi.background_image,  // en lo de otros dice brack_ground
+                        released  : eleApi.released,          // Fecha de lanzamiento
+                        rating    : eleApi.rating,            // clasificacion
+                        genres    : eleApi.genres.map(ele => ele.name),                 // mapear los generos
+                        platforms : eleApi.platforms.map(ele=> ele.platform.name)}) // mapear las plataformas
+                    }
                 })
+                //console.log(totalDatosApi)
                 nexturl = allVideoGames.data.next // proxima pagina
-            }
-            //console.log(VideoGamesApi)
+        }
+        //console.log(totalDatosApi)
         return (videoGamesApi) // retornar los primero 100 info api
 }
 
@@ -71,7 +81,7 @@ const getVideoGamesIdBd = async (idVideogame) => {
      created     : videoGamesIdBd.created,
      platforms   : videoGamesIdBd.platforms 
     }      
-    console.log('estoy en Services getVideoGamesIdBd ',videoGamesIdBd2)
+    //console.log('estoy en Services getVideoGamesIdBd ',videoGamesIdBd2)
     return (videoGamesIdBd2)
  };
  
@@ -79,6 +89,4 @@ module.exports = {
     getVideoGamesApi,
     getVideoGamesBd,
     getVideoGamesIdBd
- //   getDbInfo,
- //   getAllPokemons
 }

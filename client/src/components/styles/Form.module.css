@@ -1,6 +1,6 @@
 .fondoform{
 
-     background-image: url('https://i.ytimg.com/vi/wzq9ZrfjiBc/maxresdefault.jpg');  
+     background-image: url();  
      background-attachment: fixed; 
      background-position-y: 0%; 
      background-repeat: no-repeat; 
@@ -22,7 +22,7 @@
     font-style: normal;
     line-height: 120%;
     display: block;
-    background-color:rgb(151, 180, 243);
+    background-color:rgb(87, 135, 240);
     opacity: 0.9;
     
     margin-block-start: 0.83em;
@@ -97,3 +97,16 @@
     font-size: 15px;
 }
 
+.imageForm{
+    height: 2em;
+    width: 600px;
+    margin-right: 8px;
+    border-radius: 5px;
+    /* border-color: #00A2F0; */
+    /* background-color: rgba(255, 255, 255, 0.945); */
+    font-size: 16px;
+    /* font-family:'Red Hat Display', sans-serif;
+    box-shadow: 1px 1px 18px #00A2F0; */
+    
+
+}
