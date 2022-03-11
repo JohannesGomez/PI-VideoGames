@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styles  from './styles/Card.module.css';
+import styles  from './styles/VGCard.module.css';
 
 // __Ruta principal__: debe contener
 // - [ ] Input de búsqueda para encontrar videojuegos por nombre
@@ -11,15 +11,14 @@ import styles  from './styles/Card.module.css';
 export default function videoGameCard({idVideogame, name, image, rating, genres}) {
     //console.log('estoy en card ',idVideogame)
     return( //width = {320} height = {213}
-        <li className = {styles.Cards}>
-          <img width = {320} height = {213} className = {styles.ImageCard} src = {image} alt = {name} />  
-            <div className = {styles.Card}> 
-            {/* <h5  className = {styles.NameCard}>   {idVideogame}   </h5> */}
-            <h2  className = {styles.NameCard}>  {name} </h2>
-            <h2  className = {styles.NameCard}>  {genres.map(ele => ele+' ')} </h2>
-            <h5  className = {styles.RatingCard}>{rating}</h5>
+        <li className = {styles.movieCard}>
+            <img className={styles.movieImage} width = {265} height = {198} src = {image} alt = {name} />  
+            <div className = {styles.movieItemName}> {name}</div>
+            <div className = {styles.movieItemGenre}> {genres.map(ele => ele+', ')} </div>
+            <div className = {styles.movieItemRatin}> {rating}</div>
+            <div>
+            <Link to= {`/videogame/${idVideogame}`}><button className = {styles.movieBottonDetail}>Detail</button></Link>
             </div>
-            <Link to= {`/videogame/${idVideogame}`}><button >Detail</button></Link>
        </li>
     );
 }

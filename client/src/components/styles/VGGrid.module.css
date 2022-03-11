@@ -1,0 +1,19 @@
+/*genere columna de forma automatica*/
+/*y un ancho de 230px*/
+/* gap = separacion de 40 px entre los elementos*/
+/* padding = separacion elementos y el borde de la pagina*/
+/* justify-content= que esten centrado los elementos en el contenido*/
+.moviesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 230px);
+    gap:40px;
+    padding: 40px;
+    justify-content: center;
+
+}
+
+@media (max-width: 560px) {
+  .moviesGrid {
+      grid-template-columns: 100%;
+  }
+}

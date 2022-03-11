@@ -8,8 +8,9 @@ import {Link}        from 'react-router-dom';
 import SearchBar     from "./SeachBar";
 import stylesHome    from './styles/Home.module.css';
 import stylesFilter  from './styles/Filters.module.css'
-import stylesGrid    from './styles/Grid.module.css';
+import stylesGrid    from './styles/VGGrid.module.css';
 import VideoGameCreate from "./VideoGameCreate";
+import { Spinner } from "./Spinner";
 
 //console.log('VideoGameCard ',VideoGameCard)
 /*
@@ -18,7 +19,7 @@ import VideoGameCreate from "./VideoGameCreate";
 */
 
 export default function Home() {
-    
+    const [isLoading, setIsLoading] = useState(true);
     const dispatch      = useDispatch(); // declara la constante dispacth y asi despachar las acciones
     const videoGamesSL = useSelector((state) => state.videoGamesSG); // Traer toda la data de paises de mi estado global / mapStateToProps
     const genresAll = useSelector((state) => state.genresSG); // Traer toda la data de paises de mi estado global / mapStateToProps
@@ -43,20 +44,12 @@ export default function Home() {
         setCurrentPage(pageNumber)
      }        
 
-    // function  errorSearch() { // Object.keys(isError).length>0
-    //   console.log(errorSL)
-    //    if(Object.keys(errorSL).length>0) {
-    //      alert('Video Gamers Not Found!')
-    //   }else {
-
-    //   }
-    // }
     
-
-  
     useEffect (()=> {
+        setIsLoading(true)
         dispatch(getAllGenres());
         dispatch(getVideoGame('')); // ejecutar la accion de forma invocada  // mapDispatchToProps
+        setIsLoading(false)
     },[dispatch]);   // se incluye en el arreglo lo que depende de componente didmount
             // te montas siempre cuando suceda esto
    
@@ -78,25 +71,27 @@ export default function Home() {
     setSorts(`Ordenado By ${e.target.value}`)
     // y seteo el setsorts estado local para que pueda renderizar
   }    
-
+  if(isLoading) {
+    return <Spinner />
+  }
     return (
         <div>
            {/* Menu de Navegacion para solo creacion de video games*/}
-            <nav className={stylesHome.navbar}>
+            <nav className=''>
                  <div className={stylesHome.create}>
                      <Link to='/videoGameCreated'><button className={stylesFilter.createButton}>Created Video Games</button></Link>
                 </div>
             </nav>
 
             {/* Procesos de Filtrados por Generos y Video Juegos Creados en la app*/}
-            <div className={stylesFilter.filters}>
+            <div className=''>
                     {/* Filtrar videos games por Generos*/}
-                    <div className={stylesFilter.alphabethic}>
+                    <div className=''>
                         <div>Filters by Genres</div>
                         {/* e.target.value / del valor del onchage() el valor del select va llegar a la accion por payload
                             simpre colocar en el Calue lo que tengo en el back 
                              y se acede a los valores con el e.target.value*/}
-                            <select className={stylesFilter.alphabethic} onChange={e =>handleFilterGenres(e)}> 
+                            <select className='' onChange={e =>handleFilterGenres(e)}> 
                                  <option value='sele'>Select</option> 
                                {
                                   genresAll?.map(ele=>{return(
@@ -107,12 +102,12 @@ export default function Home() {
                             </select>
                     </div>
                     {/* Filtrar videos games existentes o Creados en al app*/}
-                    <div className={stylesFilter.alphabethic}>
+                    <div className=''>
                         <div>Filters by DataBase </div>
                         {/* e.target.value / del valor del onchage() el valor del select va llegar a la accion por payload
                             simpre colocar en el Calue lo que tengo en el back 
                              y se acede a los valores con el e.target.value*/}
-                        <select className={stylesFilter.alphabethic} onChange={e=>handleFilterDbOrCrea(e)}>
+                        <select className='' onChange={e=>handleFilterDbOrCrea(e)}>
                             <option value='sele'>Select</option>
                             <option value='filtCrea'>Created</option>  {/*descendinte  Name*/}
                             <option value='filtExis'>All</option>      {/*ascendiente Name*/}
@@ -121,7 +116,7 @@ export default function Home() {
                     </div>
 
                     {/* Ordenamientos Alfabetico Ascendente, Descente Alfabeticamente*/}
-                    <div className={stylesFilter.alphabethic}>
+                    <div className=''>
                         <div>Sort By :</div>
                         <select className={stylesFilter.alphabethic} onChange={e=>handleSortBy(e)}>
                             <option value = 'sele'>Select</option>
@@ -153,8 +148,7 @@ export default function Home() {
                   videoGamesSL =  pasa el valor numerico de toda mi informacion del arreglo 
                   paginado     =  pasa mi constante paginado
             */}
-            <div
-             className={stylesHome.pages}>
+            <div className=''>
                <Paginado 
                          videoGamesPerPage = {videoGamesPerPage}    /* cantidad card x pagina */
                          videoGamesLength  = {videoGamesSL.length}  /* total VideoGames por pagina  */
@@ -163,9 +157,8 @@ export default function Home() {
             
                  {/* Tomar solo aquellas cartas que me devuelve el paginado  */}
                  {/* <div className={styles.Card}> */}
-                     <ul className={stylesGrid.Grid}> {/*elemento padre */}
-                     {   
-                         VideoGamesCurrent?.map((ele) =>  (
+                     <ul className={stylesGrid.moviesGrid}> {/*elemento padre */}
+                     { VideoGamesCurrent?.map((ele) =>  (
                          <VideoGameCard key={ele.id}
                           idVideogame = {ele.id}     // id   
                           name        = {ele.name}   // name

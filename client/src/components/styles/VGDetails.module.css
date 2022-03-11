@@ -1,0 +1,43 @@
+.detailsConteiner {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* cuando se arratre la imagen todos los div vayan para abajo*/
+}
+
+.col {
+    max-width: 400px; /* ancho maximo |*/
+    margin: 15px; /*separacion de la imagen y el texto*/
+    height: auto; /*alto automatico de la image*/
+    height: 80%;
+}
+
+.movieImage {
+    border-radius: 15px;
+}
+
+.movieDetails {
+    font-size: 1rem; /*tamaño de texto mas grande*/
+
+}
+
+.firstItem {
+    margin-top: 0;
+    text-align: justify;
+}
+
+.firstItem2 {
+    margin-top: 10;
+    text-align: justify;
+}
+
+
+.buttonReturn{
+    border: 1px solid rgba(128, 128, 128, 0.986);
+    background-color: white;
+    border-radius: 5px;
+    margin: 70px;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 20px;
+
+}

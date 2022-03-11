@@ -60,6 +60,7 @@ export function getAllPlatforms(){ //
 
 // Traer el detalle del video juegos por id
 export function getIdVideoGame(idVideGame){
+  console.log('estoy en action getIdVideoGame', idVideGame)
   return async function(dispatch) {
     const getIdVideoGame = await axios.get(`http://localhost:3001/api/videogame/${idVideGame}`)
     return dispatch({type:GET_DETAIL_VIDEOGAME, payload: getIdVideoGame.data})

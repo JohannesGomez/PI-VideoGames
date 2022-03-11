@@ -1,0 +1,45 @@
+
+.movieCard {
+    list-style: none;  /*eliminar los puntos de la lista <li>*/
+    font-size: 1.5rem; /*el titulo pelicula un poco mas grande*/
+    text-align: center;
+
+}
+
+.movieCard:hover {
+    opacity: 0.9;
+}
+
+.movieImage {
+    border-radius: 10px;       /*borde imagen bordeado*/
+    background-color: azure; /*antes que la imagen se cargue tenga un fondo*/
+}
+
+.movieItemName {
+    text-align:center;
+    font-size: 17px;
+    /*color:white;  /*Color naranja para el fondo*/ /* fondo para el detalle de los videos games name, generos, rating*/
+}
+.movieItemGenre {
+    text-align: center;
+    font-size: 15px;
+    color:rgb(190, 234, 252);  /*Color naranja para el fondo*/ /* fondo para el detalle de los videos games name, generos, rating*/
+}
+.movieItemRatin {
+    text-align: center;
+    font-size: 15px;
+    color:rgb(157, 224, 250);  /*Color naranja para el fondo*/ /* fondo para el detalle de los videos games name, generos, rating*/
+}
+
+.movieBottonDetail {
+    font-weight: bold;
+    background-color:black;
+    color:white;
+}
+  
+@media (max-width: 560px) {
+    .movieImage {
+        width: 90%;
+        height: auto;
+    }
+  }

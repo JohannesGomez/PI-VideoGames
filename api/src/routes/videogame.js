@@ -35,7 +35,7 @@ router.post('/', async (req, res, next) => {
   - Debe traer solo los datos pedidos en la ruta de detalle de videojuego
   - Incluir los géneros asociados */
 router.get('/:idVideogame', async (req,res, netx) => {
-  console.log('estoy en /:idvideogame ', req.params)
+  console.log('estoy en back  /:idvideogame ', req.params)
   let {idVideogame} = req.params  
   try { 
         // Verificar por id está en B.D. creada y mostrar el detalle
