@@ -1,64 +1,160 @@
-.navbar {
+
+.fondoHome{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+    background-attachment: fixed;
+    overflow:scroll;
+}
+
+
+.title{
+    font-family: 'Staatliches';
+    text-align: center;
+    position: relative;
+    letter-spacing: 18px;
+    font-size: 4.2rem;
+    color: #FFFFFF;
+    margin-top: 3%;
+    text-shadow: 2px 2px 15px rgb(9, 182, 235);   
+
+}
+
+.cardContenedor{
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-evenly;
-    width: 100%;
-    height: 6vh;
+    width:100%;
+    margin: 20px auto;
+    backdrop-filter: blur(10px) saturate(100%);
+    /* contraste(45%) brightness(130%); */
+
 }
 
-.create{
-    display: flex;
-    align-items: center;
-}
-.createButton{
-    width: 170px;
-    height: 30px;
-    background-color:grey;
-    color: white;
-    font-size: 14px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-.createButton:active{
-    width: 168px;
-    height: 28px;
-}
-.refresh{
-    display: flex;
-    align-items: center;
-}
-.refreshButton {
-    width: 80px;
-    height: 30px;
-    background-color: #406343;
-    color: white;
-    font-size: 14px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-.refreshButton:active{
-    width: 78px;
-    height: 28px;
+.RefreshBoton{
+        padding: 0.9em 2.5em;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 2.5px;
+        font-weight: 500;
+        color: #00A2F0;
+        background-color: #fff;
+        border: none;
+        border-radius: 7px;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease 0s;
+        cursor: pointer;
+        outline: none;
+        margin-top: 3%;
+        margin-right:50%;
+        /* margin-inline-start: 10%; */
+        /* margin-inline-end: 55%; */
+        font-family:'Red Hat Display', sans-serif;
+
 }
 
-.filters{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin-top: 2px;
-    width: 100px;
-    font-weight: bold;
+.refreshBoton:hover {
+    background-color: #7ccdf4;
+    box-shadow: 0px 15px 20px #00A2F0;
+    color: #fff;
+    transform: translateY(-4px);
+   }
+
+.refreshBoton:active {
+    transform: translateY(-1px);
+   }
+
+
+
+.crearVideo{
+    padding: 0.9em 2.5em;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #00A2F0;
+    background-color: #fff;
+    border: none;
+    border-radius: 7px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+    margin-top: 0.9em;
+    /* margin-left: auto; */
+    font-family:'Red Hat Display', sans-serif;
+    /* margin-inline-start: 65% */
+    margin-right: 10px;
+    margin-left: 10px;
+
 }
-.alpha{
-    background-color: #9b9262;
+
+.crearVideo:hover {
+    background-color: #7ccdf4;
+    box-shadow: 0px 15px 20px #00A2F0;
+    color: #fff;
+    transform: translateY(-4px);
+   }
+
+.crearVideo:active {
+    transform: translateY(-1px);
+   }
+
+
+.subTitulo{
+    font-family:'Times New Roman', Times, serif;
+    color: #fff;
+    font-size: 1rem;
+    /* text-shadow: 2px 2px 5px rgb(0, 0, 0); */
+    margin-top: 0px;
+    margin-left: 1rem;
+
+
+}
+
+.selector{
+    margin-left: 15px;
+    margin-right: 15px;
+    align-items: center;
+    border: 0;
+    font:'Red Hat Display';
+    color: rgb(255, 255, 255);
+    width: 87px;
     height: 25px;
-    color: white;;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    font-size: 14px;
+    border-radius: 3px;
+    background-color:#e7edf088 ;
+    box-shadow: 1px 1px 18px #00A2F0;
+        
+    
+}
+
+option{
+    color: inherit;
+    background-color: #e7edf00a; 
+    color: rgb(138, 136, 136); 
+}
+
+
+
+.reloadFilter{
+
+    margin-top: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+    align-items: center;
+    text-align: center;
+    border: 0;
+    font:'Red Hat Display';
+    color: rgb(255, 255, 255);
+    width: 100px;
+    height: 25px;
+    border-radius: 3px;
+    background-color:#e7edf088 ;
+    box-shadow: 1px 1px 18px #00A2F0;
+    padding-left: 5px;
+    padding-left: 5px;
 }
 
 .pages{
@@ -66,22 +162,44 @@
     justify-content: center;
     align-items: center;
 }
-.searchbar{
-    display: flex;
-    align-items: center;
+
+
+.bottonPaginado{
+    font-family: 'Staatliches';
+    font-size: 15px;
+    color: #c00808;
+    background-color: #9ac2f7;
+    border: none;
+    border-radius: 2px;
+    padding: 2px 7px;
+    margin: 1px 1px;
+    /* box-shadow: 2px 2px 15px #00A2F0; */
+    /* text-shadow: 1px 1px 1px rgb(0, 0, 0); */
 }
-.recipes{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
+.bottonPaginado:hover {
+    opacity: 0.9;
+}
+
+
+.createdContenedor{
+    /* border: 1px solid rgba(226, 18, 18, 0.986); */
+    /* background-color: white; */
+    /* border-radius: 5px; */
+    padding-left: 80%;
     
+    /* display: inline-block; */
+    /* padding-top: 0px;
+    padding-bottom: 0px; */
+ 
 }
-.background{
-    min-height: calc(100vh + 10vh);
-    background: linear-gradient(black, #3a140f);
-}
-.Error{
-    color: white;
+
+.createdButton{
+    border: 1px solid rgba(128, 128, 128, 0.986);
+    background-color: white;
+    border-radius: 5px;
+    margin: 2px;
+    /* padding-left: 30px;
+    padding-right: 30px; */
+    font-size: 15px;
+ 
 }

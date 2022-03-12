@@ -1,5 +1,5 @@
 import React       from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import Home from './components/Home';
 import LandingPage from './components/LandingPage';
 import './App.css';
@@ -14,9 +14,9 @@ import styles from './App.module.css'
 function App() {
   return (
     <React.Fragment>
-      <div>
-          <header><h1 className={styles.title}>Video Games App</h1> </header>
-      </div>
+          <header>
+            <Link to = '/'><h1 className={styles.title}>Video Games App</h1></Link> 
+          </header>
       {/* <NavBar /> */}
       <Route exact path  = '/'                       component = {LandingPage}/> 
       <Route exact path  = '/home'                   component = {Home}/>

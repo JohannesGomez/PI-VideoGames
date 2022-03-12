@@ -26,20 +26,26 @@ export const VALID_SEARCH_BAR   = 'VALIDI_SEARCH_BAR'
 // Traer todos los video game de la api y base de datos o listado de las primeros 15 videojuegos que contengan la palabra ingresada como query parameter
 export function getVideoGame(name){ 
   //console.log('estoy en action getVideoGame', name)
-  return async function(dispatch){    
+  return async function(dispatch){  
+    try{  
       const getNameVideoGame = await axios.get(`http://localhost:3001/api/videogames?name=${name}`);
+      console.log('estoy en action getVideoGame', getNameVideoGame.data)
+      if(getNameVideoGame.data[0]==='error') return alert('video games not found!') 
       return dispatch({type:GET_ALL_VIDEOGAME, payload: getNameVideoGame.data })
+    }catch(error) {return error}
+      //{alert(alert('Video Games Not Found!'))}
+      //return error}
   }
 };
 
 // determinar error en el search
-export function getVideoGameSearch(name){ 
-  //console.log('estoy en action getVideoGame', name)
-  return async function(dispatch){
-      const getNameVideoGame = await axios.get(`http://localhost:3001/api/videogames?name=${name}`);
-      return dispatch({type:VALID_SEARCH_BAR, payload: getNameVideoGame.data })
-  }
-};
+// export function getVideoGameSearch(name){ 
+//   //console.log('estoy en action getVideoGame', name)
+//   return async function(dispatch){
+//       const getNameVideoGame = await axios.get(`http://localhost:3001/api/videogames?name=${name}`);
+//       return dispatch({type:VALID_SEARCH_BAR, payload: getNameVideoGame.data })
+//   }
+// };
 
 
 // Traer todos los video generos de la base de datos
@@ -84,7 +90,8 @@ export function getInitDetailVG(){
 
 // Filtrado por Generos 
 export function filterGenres(valorFilter) {  // filtro por GENRESes payload valor que me llega por value
-   return {type:FILTERS_GENRES, payload:valorFilter} 
+//   console.log('action filterGenres ', valorFilter)
+   return {type:FILTERS_GENRES, payload: valorFilter} 
 }
 
 // Filtrado por videos existente o agregado por nosotros

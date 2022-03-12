@@ -1,0 +1,87 @@
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 6vh;
+}
+
+.create{
+    display: flex;
+    align-items: center;
+}
+.createButton{
+    width: 170px;
+    height: 30px;
+    background-color:grey;
+    color: white;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.createButton:active{
+    width: 168px;
+    height: 28px;
+}
+.refresh{
+    display: flex;
+    align-items: center;
+}
+.refreshButton {
+    width: 80px;
+    height: 30px;
+    background-color: #406343;
+    color: white;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.refreshButton:active{
+    width: 78px;
+    height: 28px;
+}
+
+.filters{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 2px;
+    width: 100px;
+    font-weight: bold;
+}
+.alpha{
+    background-color: #9b9262;
+    height: 25px;
+    color: white;;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.pages{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.searchbar{
+    display: flex;
+    align-items: center;
+}
+.recipes{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+.background{
+    min-height: calc(100vh + 10vh);
+    background: linear-gradient(black, #3a140f);
+}
+.Error{
+    color: white;
+}

@@ -46,7 +46,7 @@ export default function VideoGameDetail(){
                      <p>{`Rating      : ${videoGamesDetailSL.rating}`}</p>
                      <p>{`Platforms  :  ${videoGamesDetailSL.platforms.map((ele) => ele).join(', ')}`}</p>
                      <p>{`Genres     :  ${videoGamesDetailSL.genres.map((ele) => ele).join(', ')}`}</p>
-                     <Link to= '/Home'><button className={styles.buttonReturn}>Return</button></Link>                      
+                     <Link to= '/home'><button className={styles.buttonReturn}>Return</button></Link>                      
                 </div>
             </div> 
   )

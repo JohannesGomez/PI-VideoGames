@@ -1,6 +1,7 @@
 .spinner {
     display: flex; /* centrarlo*/
     justify-content: center; /* centrarlo*/
+    margin: 30px;
 }
 
 .spinning {

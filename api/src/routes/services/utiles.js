@@ -15,7 +15,7 @@ const getVideoGamesApi = async () => {
         let videoGamesApi = [] // guardará en array todos los v.j de la api
         let nexturl = `https://api.rawg.io/api/games?key=${KEY_API}` // endpoint toda la data api
 
-        let cantRegApi    = 10  // Limited o cantidad de registro traer de la api externa
+        let cantRegApi    = 20  // Limited o cantidad de registro traer de la api externa
         let totalDatosApi = 0   // contador total registro a agregar o traer de la api
         while (totalDatosApi<cantRegApi) { // determina cantidad registro que se debe  traer de la api
                 let allVideoGames = await axios.get(nexturl);

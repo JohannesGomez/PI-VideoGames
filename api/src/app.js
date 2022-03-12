@@ -29,7 +29,7 @@ server.use('/api', routes);
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   const status = err.status || 500;
   const message = err.message || err;
-  console.error(err);
+  console.error(message);
   res.status(status).send(message);
 });
 

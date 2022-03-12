@@ -11,6 +11,7 @@ import stylesFilter  from './styles/Filters.module.css'
 import stylesGrid    from './styles/VGGrid.module.css';
 import VideoGameCreate from "./VideoGameCreate";
 import { Spinner } from "./Spinner";
+import { Mensaje } from "./Mensaje";
 
 //console.log('VideoGameCard ',VideoGameCard)
 /*
@@ -50,19 +51,28 @@ export default function Home() {
         dispatch(getAllGenres());
         dispatch(getVideoGame('')); // ejecutar la accion de forma invocada  // mapDispatchToProps
         setIsLoading(false)
-    },[dispatch]);   // se incluye en el arreglo lo que depende de componente didmount
+    },[]);   // se incluye en el arreglo lo que depende de componente didmount
             // te montas siempre cuando suceda esto
    
   // filtrado por generos
   function handleFilterGenres(e) {
      //console.log(e.target.value)
-     dispatch(filterGenres(e.target.value))
-  }
+     if(e.target.value!=='sele'){
+       e.preventDefault();
+       dispatch(filterGenres(e.target.value))
+       setCurrentPage(1); // se setea por defecto el estado local en 1 y para que pude renderizar se renderice
+       setFilters(`Filter By ${e.target.value}`)
+     }
+   }
 
   // Filtrado por videos existente o agregado por nosotros
   function handleFilterDbOrCrea(e) {
+    e.preventDefault();
     dispatch(filterDbOrCrea(e.target.value))
+    setCurrentPage(1); // se setea por defecto el estado local en 1 y para que pude renderizar se renderice
+    setFilters(`Filter By ${e.target.value}`)
   }
+
  // ordenamiento por alfabeticamente ascen y descen por orden alfabetico y por rating
   function handleSortBy(e){
      e.preventDefault();
@@ -71,54 +81,57 @@ export default function Home() {
     setSorts(`Ordenado By ${e.target.value}`)
     // y seteo el setsorts estado local para que pueda renderizar
   }    
-  if(isLoading) {
-    return <Spinner />
-  }
-    return (
-        <div>
-           {/* Menu de Navegacion para solo creacion de video games*/}
-            <nav className=''>
-                 <div className={stylesHome.create}>
-                     <Link to='/videoGameCreated'><button className={stylesFilter.createButton}>Created Video Games</button></Link>
-                </div>
-            </nav>
 
-            {/* Procesos de Filtrados por Generos y Video Juegos Creados en la app*/}
-            <div className=''>
-                    {/* Filtrar videos games por Generos*/}
-                    <div className=''>
-                        <div>Filters by Genres</div>
+  // function handleReset(e) {
+  //   e.preventDefault();
+  //   dispatch(getVideoGame(''));
+  // }
+
+   if(isLoading) {
+     return <Spinner />
+   }
+
+  //  if(!isLoading && videoGamesSL[0]==='error') {
+  //    return<Mensaje />
+  //  }
+
+
+  return (
+        <div className={stylesHome.fondoHome}>
+              {/* Procesos de Filtrados por Generos y Video Juegos Creados en la app*/}
+                {/* Opcion para la creacion de video games*/}
+                    <div className={stylesHome.createdContenedor}>
+                     <Link to='/videoGameCreated'><button 
+                     className={stylesHome.createdButton}>Created Video Games</button></Link>
+                    </div>
+              <div>
+                        <label className={stylesHome.subTitulo}>Filters by Genres  </label>
                         {/* e.target.value / del valor del onchage() el valor del select va llegar a la accion por payload
                             simpre colocar en el Calue lo que tengo en el back 
                              y se acede a los valores con el e.target.value*/}
-                            <select className='' onChange={e =>handleFilterGenres(e)}> 
+                            <select className={stylesHome.Selector} onChange={e =>handleFilterGenres(e)}> 
                                  <option value='sele'>Select</option> 
                                {
-                                  genresAll?.map(ele=>{return(
+                                  genresAll?.map((ele)=>(
                                    <option key={ele.id} value={ele.name} >{ele.name}</option>
-                                 )})
+                                 ))
                                } 
 
                             </select>
-                    </div>
-                    {/* Filtrar videos games existentes o Creados en al app*/}
-                    <div className=''>
-                        <div>Filters by DataBase </div>
+                        {/* Filtrar videos games existentes o Creados en al app*/}
+                        <label className={stylesHome.subTitulo}>Filters by DataBase </label>
                         {/* e.target.value / del valor del onchage() el valor del select va llegar a la accion por payload
                             simpre colocar en el Calue lo que tengo en el back 
                              y se acede a los valores con el e.target.value*/}
-                        <select className='' onChange={e=>handleFilterDbOrCrea(e)}>
+                        <select className={stylesHome.Selector} onChange={e=>handleFilterDbOrCrea(e)}>
                             <option value='sele'>Select</option>
                             <option value='filtCrea'>Created</option>  {/*descendinte  Name*/}
                             <option value='filtExis'>All</option>      {/*ascendiente Name*/}
                         </select>
 
-                    </div>
-
-                    {/* Ordenamientos Alfabetico Ascendente, Descente Alfabeticamente*/}
-                    <div className=''>
-                        <div>Sort By :</div>
-                        <select className={stylesFilter.alphabethic} onChange={e=>handleSortBy(e)}>
+                      {/* Ordenamientos Alfabetico Ascendente, Descente Alfabeticamente*/}
+                      <label className={stylesHome.subTitulo}>Sort By :</label>
+                           <select className={stylesHome.Selector} onChange={e=>handleSortBy(e)}>
                             <option value = 'sele'>Select</option>
                             <option value = '' disabled = 'disabled'>Alphabetical Name</option>
                             <option value = 'sortAscName'>A - Z </option> {/*ascendiente Name*/}
@@ -128,32 +141,22 @@ export default function Home() {
                             <option value = 'sortAscRati'>A - Z </option> {/*ascendiente Rating*/}
                             <option value = 'sortDesRati'>Z - A</option>  {/*descendinte Rating*/}
                         </select>
-                    </div>
-               </div>
                {/* fin del proceso de filtro y ordenamiento */}
 
-            {/* El  S e a c h B a r */}
-            <SearchBar/>
-      {/* {Object.keys(errorSL).length>0?alert('Video Gamers Not Found!'):''} */}
-      {/* {errorSearch()} */}
-            {/* {
-              errorSL.error?alert(errorSL.error) : ''
-            } */}
-            {videoGamesSL[0]==='error' && 
-              //<div>"vg not found!"</div>
-              <VideoGameCreate />
-            }
-            {/* Renderizar el componente de Paginado y le paso el estado de mi pagona
-                  VideoGamesPerPage =  pasa el estado declarado arriba de cartas por pagina
-                  videoGamesSL =  pasa el valor numerico de toda mi informacion del arreglo 
-                  paginado     =  pasa mi constante paginado
-            */}
-            <div className=''>
-               <Paginado 
-                         videoGamesPerPage = {videoGamesPerPage}    /* cantidad card x pagina */
-                         videoGamesLength  = {videoGamesSL.length}  /* total VideoGames por pagina  */
-                         paginado          = {paginado}/>
-            </div>
+                  {/* El  S e a c h B a r */}
+                  <SearchBar/>
+                  {/* Renderizar el componente de Paginado y le paso el estado de mi pagona
+                        VideoGamesPerPage =  pasa el estado declarado arriba de cartas por pagina
+                        videoGamesSL =  pasa el valor numerico de toda mi informacion del arreglo 
+                        paginado     =  pasa mi constante paginado
+                  */}
+                  <div className={stylesHome.pages}>
+
+                    <Paginado 
+                              videoGamesPerPage = {videoGamesPerPage}    /* cantidad card x pagina */
+                              videoGamesLength  = {videoGamesSL.length}  /* total VideoGames por pagina  */
+                              paginado          = {paginado}/>
+                  </div>
             
                  {/* Tomar solo aquellas cartas que me devuelve el paginado  */}
                  {/* <div className={styles.Card}> */}
@@ -170,5 +173,6 @@ export default function Home() {
                        } 
                   </ul>
             </div>
+       </div>
     )
 }

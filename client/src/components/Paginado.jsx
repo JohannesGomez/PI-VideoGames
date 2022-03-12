@@ -1,6 +1,6 @@
 import React from "react"
-//import {styles} from './Styles.module.css';
-import stylesHome   from './styles/Home.module.css';
+import styles from './styles/Paginado.module.css';
+import stylesHome from './styles/Home.module.css';
 
 // este omponente es el que renderiza los nuemero
 export default function Paginado({videoGamesPerPage, videoGamesLength, paginado}) {
@@ -12,18 +12,34 @@ export default function Paginado({videoGamesPerPage, videoGamesLength, paginado}
       }
      // renderiza los numeros
      return (
-       <nav>
-           <ul className={stylesHome.pages}>
-                { pageNumbers &&  
-                  pageNumbers.map(ele => {
-                    return(
-                         <li className={stylesHome.pages} key={ele}>
-                             <button onClick={() => paginado(ele)}>{ele}</button> {/* paginado constante declarada en el componente home */}
-                         </li>
-                         )
-                    })
-                }
-           </ul>
-      </nav>
+      //  <nav>
+      //      <ul className={styles.paginadoGrid}>
+      //           { pageNumbers &&  
+      //             pageNumbers.map(ele => {
+      //               return(
+      //                    <li className={styles.paginadoCard} key={ele}>
+      //                        <button className={styles.bottonPaginado} 
+      //                        onClick={() => paginado(ele)}>{ele}</button> {/* paginado constante declarada en el componente home */}
+      //                    </li>
+      //                    )
+      //               })
+      //           }
+      //      </ul>
+      // </nav>
+      /* */
+      <nav>
+      <ul className={stylesHome.pages}>
+           { pageNumbers &&  
+             pageNumbers.map(ele => {
+               return(
+                    <li className={stylesHome.pages} key={ele}>
+                        <button className={stylesHome.bottonPaginado} onClick={() => paginado(ele)}>{ele}</button> {/* paginado constante declarada en el componente home */}
+                    </li>
+                    )
+               })
+           }
+      </ul>
+ </nav>
+
     )
 }

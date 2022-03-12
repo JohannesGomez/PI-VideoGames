@@ -1,0 +1,38 @@
+.paginado{
+
+    margin-bottom: 5%;
+    display: inline-flex; 
+    height: 1em;
+    flex-wrap: wrap; 
+    align-content: space-between;
+    flex-direction: row;
+
+}
+
+.bottonPaginado{
+    font-family: 'Staatliches';
+    font-size: 18px;
+    color: #FFFFFF;
+    background-color: #00A2F0;
+    border: none;
+    border-radius: 1.5px;
+    padding: 2px 7px;
+    margin: 5px 5px;
+    /* box-shadow: 2px 2px 15px #00A2F0; */
+    /* text-shadow: 1px 1px 1px rgb(0, 0, 0); */
+}
+
+.paginadoCard {
+    list-style: none;  /*eliminar los puntos de la lista <li>*/
+    font-size: 1.5rem; /*el titulo un poco mas grande*/
+    text-align: center;
+}
+.paginadoCard:hover {
+    opacity: 0.9;
+}
+
+.paginadoGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 26px);
+    justify-content: center;
+} 

@@ -17,6 +17,8 @@ const rootReducer = (state = initialState, action) => {
     switch(action.type) {
           case GET_ALL_VIDEOGAME: //  todos los videos games api y bd
                //console.log('estoy REDUCER GET_ALL_VIDEOGAME ', action.payload)
+               // let videoGamesAllAux1 = state.videoGamesAuxSG
+               // if(action.payload[0]==='error') return {...state, videoGamesSG :  videoGamesAllAux1}
                return {...state, videoGamesSG : action.payload, videoGamesAuxSG : action.payload}
           // case VALID_SEARCH_BAR: //  todos los videos games api y bd
           //      console.log('estoy REDUCER VALID_SEARCH_BAR ', action.payload)
@@ -42,8 +44,10 @@ const rootReducer = (state = initialState, action) => {
                //console.log('REDUCER : POST_VIDEOGAME ',action.payload)
                return{...state}
           case FILTERS_GENRES: // Filtrado video juegos por Generos
+               //console.log('REDUCER : SIN FILTERS_GENRES:', action.payload)
                let videoGamesAllAux1FSG = state.videoGamesAuxSG // guadar en uan variable todos lo v.j. del estado para filtrarlos
                let filtersVgGenres = videoGamesAllAux1FSG.filter(ele => ele.genres.includes(action.payload))
+               //console.log('REDUCER : CON FILTERS_GENRES:', filtersVgGenres)
                return {...state, videoGamesSG: filtersVgGenres}
           case FILTERS_VG_CREATED: // Filtrado por vide juegos existentes
                let videoGamesAllAux2FSG = state.videoGamesAuxSG
@@ -60,7 +64,7 @@ const rootReducer = (state = initialState, action) => {
                */
                //console.log('REDUCER : ORDER_BY_NAME', action.payload)
                // ordenar Ascentedente por name o ratin
-               let orderArray = action.payload === 'sortAscName' ?
+               let orderArrayName = action.payload === 'sortAscName' ?
                   state.videoGamesSG.sort(function (a, b) {
                      if (a.name > b.name)  return 1; 
                      if (b.name > a.name)  return -1;
@@ -71,7 +75,7 @@ const rootReducer = (state = initialState, action) => {
                      if (b.name > a.name) return 1;
                      return 0;
                 })
-                return {...state,videoGamesSG: orderArray}
+                return {...state,videoGamesSG: orderArrayName}
           case ORDER_BY_RATING:   //  ordenamiento ascendente name country
                /*se declara un arreglo y se pregunta por el tiopo de ordenamiento
                accede a mis estado global videoGamesAuxSG que se está renderizando
@@ -81,7 +85,7 @@ const rootReducer = (state = initialState, action) => {
                */
                //console.log('REDUCER : ORDER_BY_RATING', action.payload)
                // ordenar Ascentedente por name o ratin
-               let orderArray2 = action.payload === 'sortAscRati' ?
+               let orderArrayRating = action.payload === 'sortAscRati' ?
                state.videoGamesSG.sort(function (a, b) {
                    if (a.rating > b.rating)  return 1; 
                    if (b.rating > a.rating)  return -1;
@@ -92,7 +96,7 @@ const rootReducer = (state = initialState, action) => {
                    if (b.rating > a.rating) return 1;
                    return 0;
                })
-               return {...state,videoGamesSG: orderArray2}
+               return {...state,videoGamesSG: orderArrayRating}
 
        default:return state;
    }
