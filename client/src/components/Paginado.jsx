@@ -4,33 +4,16 @@ import stylesHome from './styles/Home.module.css';
 
 // este omponente es el que renderiza los nuemero
 export default function Paginado({videoGamesPerPage, videoGamesLength, paginado}) {
-      // cardsPerPage determina la cantidad de card por pantalla
       //console.log('estoy en paginado', videoGamesPerPage, videoGamesLength, paginado)
       const pageNumbers = [];
       for(let i=1; i<=Math.ceil(videoGamesLength/videoGamesPerPage);i++) {
           pageNumbers.push(i)
       }
-     // renderiza los numeros
-     return (
-      //  <nav>
-      //      <ul className={styles.paginadoGrid}>
-      //           { pageNumbers &&  
-      //             pageNumbers.map(ele => {
-      //               return(
-      //                    <li className={styles.paginadoCard} key={ele}>
-      //                        <button className={styles.bottonPaginado} 
-      //                        onClick={() => paginado(ele)}>{ele}</button> {/* paginado constante declarada en el componente home */}
-      //                    </li>
-      //                    )
-      //               })
-      //           }
-      //      </ul>
-      // </nav>
-      /* */
+
+      return (
       <nav>
       <ul className={stylesHome.pages}>
-           { pageNumbers &&  
-             pageNumbers.map(ele => {
+           { pageNumbers && pageNumbers.map(ele => {
                return(
                     <li className={stylesHome.pages} key={ele}>
                         <button className={stylesHome.bottonPaginado} onClick={() => paginado(ele)}>{ele}</button> {/* paginado constante declarada en el componente home */}

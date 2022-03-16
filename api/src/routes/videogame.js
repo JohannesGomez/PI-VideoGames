@@ -1,6 +1,7 @@
 const axios = require('axios');
 const { Router } = require('express');
 const {Videogames,Genres} = require('../db') // traer mi modelo
+const { getVideoGamesIdBd} = require('./services/utiles');
 const router = Router();
 require('dotenv').config();
 const { KEY_API } = process.env; // clave api externa
@@ -35,13 +36,13 @@ router.post('/', async (req, res, next) => {
   - Debe traer solo los datos pedidos en la ruta de detalle de videojuego
   - Incluir los géneros asociados */
 router.get('/:idVideogame', async (req,res, netx) => {
-  console.log('estoy en back  /:idvideogame ', req.params)
+  //console.log('estoy en back  /:idvideogame ', req.params)
   let {idVideogame} = req.params  
   try { 
         // Verificar por id está en B.D. creada y mostrar el detalle
         if(idVideogame.length>30) { // pata de cabra
           let videoGamesIdBd1 = await getVideoGamesIdBd(idVideogame)  // verifcar si existe b.d. y traer el detalle
-          console.log('detail ByPk ', videoGamesIdBd1)        
+          //console.log('detail ByPk ', videoGamesIdBd1)        
           return res.status(200).send(videoGamesIdBd1)
         }
         let videoGamesIdApi = await axios.get(`https://api.rawg.io/api/games/${idVideogame}?key=${KEY_API}`); // __GET /videogames__: Obtener un listado de los videojuegos

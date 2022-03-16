@@ -17,5 +17,4 @@ router.use('/videogame',videogame);
 router.use('/platforms',platforms);
 router.use('/genres',genres);
 
-
 module.exports = router;

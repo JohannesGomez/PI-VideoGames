@@ -1,6 +1,6 @@
 .fondoform{
 
-     background-image: url();  
+     /* background-image: url();   */
      background-attachment: fixed; 
      background-position-y: 0%; 
      background-repeat: no-repeat; 
@@ -22,7 +22,7 @@
     font-style: normal;
     line-height: 120%;
     display: block;
-    background-color:rgb(87, 135, 240);
+    background-color:rgb(182, 190, 207);
     opacity: 0.9;
     
     margin-block-start: 0.83em;
@@ -43,6 +43,7 @@
 
 .h2{
     font-family: Georgia, 'Times New Roman', Times, serif;
+    color:black;
 }
 
 .div{
@@ -60,7 +61,7 @@
     width: 50%;
     padding-left: 5px;
     border-radius: 10px;
-    background-color:rgb(194, 194, 252);
+    background-color:white;
     border: 0px;
     font-size: 18px;
     color:black;

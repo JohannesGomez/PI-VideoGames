@@ -17,7 +17,7 @@ export default function videoGameCard({idVideogame, name, image, rating, genres}
             <div className = {styles.movieItemName}> {name}</div>
             <div className = {styles.movieItemGenre}> {genres.map(ele => ele+', ')} </div>
             <div className = {styles.movieItemRatin}> {rating}</div>
-            <div>
+            <div >
             <Link to= {`/videogame/${idVideogame}`}><button className = {styles.movieBottonDetail}>Detail</button></Link>
             </div>
        </li>

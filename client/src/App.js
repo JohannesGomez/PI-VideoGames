@@ -8,15 +8,11 @@ import './App.css';
 // import VgCreate from './components/vgCreate';
 import VideoGameCreate from './components/VideoGameCreate';
 import VideoGameDetail from './components/VideoGameDetail';
-import styles from './App.module.css'
 
 // crear mis rutas
 function App() {
   return (
     <React.Fragment>
-          <header>
-            <Link to = '/'><h1 className={styles.title}>Video Games App</h1></Link> 
-          </header>
       {/* <NavBar /> */}
       <Route exact path  = '/'                       component = {LandingPage}/> 
       <Route exact path  = '/home'                   component = {Home}/>

@@ -8,7 +8,7 @@ import Styles from './styles/Form.module.css';
 
 function validate(inputVideoGame) {  // funcion validadora todos los errores de los inputs tiene que retornar un objeto
     let errors = {}; // genera un objeto de estado de errores
-    //console.log(inputVideoGame)
+     // regular expresion
     if(!/[a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/.test(inputVideoGame.name)) { // Solo letra manuyuscula y minusculas
       errors.name = '* Name is Require !' // guardar en mi objeto erros se requiere un nombre
     } else errors.name = ' ' 
@@ -75,11 +75,11 @@ export default function VideoGameCreate(){
   // Check de Plataformas 
   function handleCheckPlatforms(e){
     if(e.target.checked){        
-        console.log('check plataformas TRUE ',e.target.checked) 
+       // console.log('check plataformas TRUE ',e.target.checked) 
         setInputVideoGame({...inputVideoGame, platforms : [...inputVideoGame.platforms, e.target.value]})
         //console.log(inputVideoGame.platforms)
     } else { 
-      console.log('check plataformas FALSE ',e.target.checked)
+      //console.log('check plataformas FALSE ',e.target.checked)
       // setear los checks
         setInputVideoGame({ ...inputVideoGame, 
         platforms : inputVideoGame.platforms.filter(ele => ele !== e.target.value)}) // remplazar en i array todos aquellos check que sean dife de false
@@ -178,7 +178,7 @@ return(
                     <div className={Styles.div}>
                         <label className={Styles.h2}>*Platforms :</label>
                         {platformsAll.map((ele) => ( 
-                            <label key={ele.id} className=''>
+                            <label key={ele.id} className={Styles.h2}>
                               <input className=''
                                 key     = {ele.id}
                                 type    = 'checkbox'
@@ -194,7 +194,7 @@ return(
                     <div className={Styles.div}>
                         <label className={Styles.h2}>*Genres :</label>
                         {genresAll.map((ele) => ( 
-                            <label key={ele.id} className=''>
+                            <label key={ele.id} className={Styles.h2}>
                               <input className='Check'
                                 key     = {ele.id}
                                 name    = 'genresId'
@@ -207,7 +207,7 @@ return(
                     </div>
                     {/* SubMit enviar el formulario para la accion de grabar */}                    
                    <div className=''> 
-                        <button className='' type='submit'>Created</button>
+                        <button className={Styles.buttonReturn} type='submit'>Created</button>
                    </div>
                   </form>
                   <Link to= '/home'><button className={Styles.buttonReturn}>Return</button></Link> 

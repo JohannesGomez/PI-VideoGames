@@ -1,5 +1,5 @@
 const axios = require('axios');
-const {getVideoGamesApi, getVideoGamesBd, getVideoGamesIdBd} = require('./services/utiles');
+const {getVideoGamesApi, getVideoGamesBd} = require('./services/utiles');
 const {Router} = require('express');
 const {Videogames,Genres} = require('../db') // traer mi modelo
 const router = Router();
@@ -28,12 +28,7 @@ router.get('/', async (req, res, next) => {
          
          if(videoGamesApiAux.length===0) videoGamesApiAux.push('error')
 
-        //if(videoGamesApiAux[0]==='error') return res.status(404).send('No se encuentra ese video juego') 
          return res.status(200).send(videoGamesApiAux.slice(0,16))
-        //  return videoGamesApiAux.length?res.status(200).send(videoGamesApiAux.slice(0,16))
-        //  :
-        //  res.status(200).send('Video Gamers Not Founds!')
-         //res.status(200).send({error:'Video Gamers Not Founds!'})
       }        
       return res.status(200).send(allVideoGamesApiyBd) // retornar todos los v.g. api y bd
   }catch(error) {next(error)}

@@ -18,7 +18,7 @@ export default function SearchBar(){
     // guardar en mi estado local lo que vaya apareciendo en el input
     // 
     function handleInputNameChange(e) {
-        e.preventDefault()
+        e.preventDefault() // evitar que se actualice la pagina
         setName(e.target.value) //tomar el value del input        
     }
 

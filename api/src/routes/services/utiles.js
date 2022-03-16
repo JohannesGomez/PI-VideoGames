@@ -9,13 +9,10 @@ const { KEY_API } = process.env; // clave api externa
 
 // __GET /videogames__: Obtener un listado de los videojuegos
 const getVideoGamesApi = async () => {
-        console.log('estoy back Utiles /videogames getVideoGamesApi ',KEY_API)
-        
-
+        //console.log('estoy back Utiles /videogames getVideoGamesApi ',KEY_API)
         let videoGamesApi = [] // guardará en array todos los v.j de la api
         let nexturl = `https://api.rawg.io/api/games?key=${KEY_API}` // endpoint toda la data api
-
-        let cantRegApi    = 20  // Limited o cantidad de registro traer de la api externa
+        let cantRegApi    = 100  // Limited o cantidad de registro traer de la api externa
         let totalDatosApi = 0   // contador total registro a agregar o traer de la api
         while (totalDatosApi<cantRegApi) { // determina cantidad registro que se debe  traer de la api
                 let allVideoGames = await axios.get(nexturl);
@@ -58,7 +55,7 @@ const getVideoGamesBd= async () => {
     created     : ele.created,
     platforms   : ele.platforms 
 }})       
-   console.log('estoy en Services getVideoGamesBd ',VideoGamesBdAll)
+   //console.log('estoy en Services getVideoGamesBd ',VideoGamesBdAll)
    return (VideoGamesBdAll)
 };
 

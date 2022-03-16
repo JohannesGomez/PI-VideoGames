@@ -76,7 +76,7 @@ export function getIdVideoGame(idVideGame){
 // Grabar los datos del formulario controlado
 export function postVideoGame(payload){
   return async function(dispatch){    
-      const postVideoGame = await axios.post('http://localhost:3001/api/videogame',payload); // axios.get devuelve la respuesta en un data
+      await axios.post('http://localhost:3001/api/videogame',payload); // axios.get devuelve la respuesta en un data
       return dispatch({type:POST_VIDEOGAME})
   }
 };
@@ -101,7 +101,7 @@ export function filterDbOrCrea(valorFilter) {
 
 // ordenar alfab. por nombre o por rating
 export function sortBy(sortby) {
-  if(sortby==='sortAscName') return {type: ORDER_BY_NAME,   payload:sortby};
+  if(sortby==='sortAscName' || sortby==='sortDesName') return {type: ORDER_BY_NAME,   payload:sortby};
   return {type: ORDER_BY_RATING, payload:sortby};
 }
 

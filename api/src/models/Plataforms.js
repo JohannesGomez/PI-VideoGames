@@ -7,7 +7,3 @@ module.exports = (sequelize) => {  // definir mi entidades
            allowNull: false,},
     });
 };
-
-// Tabla de Generos de Plataforms
-//   - ID
-//   - Nombre

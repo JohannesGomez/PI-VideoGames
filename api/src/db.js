@@ -1,10 +1,10 @@
-require('dotenv').config();
+require('dotenv').config();  // liberia dotenv configurar var de entornos
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const {
   DB_USER, DB_PASSWORD, DB_HOST,
-} = process.env;
+} = process.env;  // variable entorno
 
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/videogames`, {
   logging: false, // set to console.log to see the raw SQL queries
@@ -26,7 +26,8 @@ modelDefiners.forEach(model => model(sequelize));
 // Capitalizamos los nombres de los modelos ie: product => Product
 let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
-sequelize.models = Object.fromEntries(capsEntries);
+
+sequelize.models = Object.fromEntries(capsEntries); // importa mis modelos de entidades
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
@@ -35,8 +36,8 @@ const { Videogames, Genres, Plataforms } = sequelize.models; // Modelos de seque
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 console.log(Videogames, ' ', Genres, ' ', Plataforms)
-  Videogames.belongsToMany(Genres, {through : 'Videogames_Genres'}); // tabla intermedia
-  Genres.belongsToMany(Videogames, {through : 'Videogames_Genres'}); // tabla intermedia
+Videogames.belongsToMany(Genres, {through : 'Videogames_Genres'}); // tabla intermedia
+Genres.belongsToMany(Videogames, {through : 'Videogames_Genres'}); // tabla intermedia
 
 
 module.exports = {

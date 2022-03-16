@@ -118,14 +118,13 @@
     margin-left: 15px;
     margin-right: 15px;
     align-items: center;
-    border: 0;
-    font:'Red Hat Display';
-    color: rgb(255, 255, 255);
-    width: 87px;
-    height: 25px;
+    /* font   :'Red Hat Display'; */
+    color  : rgb(255, 255, 255);
+    width  : 87px;
+    height : 25px;
     border-radius: 3px;
-    background-color:#e7edf088 ;
-    box-shadow: 1px 1px 18px #00A2F0;
+    /* background-color:#e7edf088 ;
+    box-shadow: 1px 1px 18px #00A2F0; */
         
     
 }
@@ -168,7 +167,7 @@ option{
     font-family: 'Staatliches';
     font-size: 15px;
     color: #c00808;
-    background-color: #9ac2f7;
+    background-color:white;
     border: none;
     border-radius: 2px;
     padding: 2px 7px;
@@ -194,7 +193,7 @@ option{
 }
 
 .createdButton{
-    border: 1px solid rgba(128, 128, 128, 0.986);
+    /* border: 1px solid rgba(128, 128, 128, 0.986); */
     background-color: white;
     border-radius: 5px;
     margin: 2px;
@@ -202,4 +201,18 @@ option{
     padding-right: 30px; */
     font-size: 15px;
  
+}
+
+.titleHome {
+    text-align: center;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    /* background-color: #fff; */
+    font-size: 2rem;
+    cursor: pointer;
+    /* text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #0c4acf, 0 0 40px #0c4acf,
+      0 0 50px #0c4acf, 0 0 60px#0c4acf, 0 0 70px #0c4acf; */
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073,
+      0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;      
 }

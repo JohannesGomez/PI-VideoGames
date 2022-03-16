@@ -7,6 +7,7 @@ import { Spinner } from "./Spinner";
 //import Styles from './styles/Detail.module.css';
 import styles from './styles/VGDetails.module.css'
 
+
 /* Componente funcional Para mostrar el Detall del Video Juego por ID */
 export default function VideoGameDetail(){
     let videoGamesDetailSL = useSelector((state)=> state.videoGamesDetailSG) // detalle VideoGame por id del estado global
@@ -40,12 +41,12 @@ export default function VideoGameDetail(){
                  <div className={`${styles.col} ${styles.movieDetails}`}>
                      <p>{`Id   : ${videoGamesDetailSL.id}`}</p>
                      <p>{`Name : ${videoGamesDetailSL.name}`}</p>
-                     <p>Description :</p>
-                     <p className={styles.firstItem} dangerouslySetInnerHTML={{__html: videoGamesDetailSL.description, }} />
                      <p>{`Released    : ${formatDate(videoGamesDetailSL.released)}`}</p>
                      <p>{`Rating      : ${videoGamesDetailSL.rating}`}</p>
                      <p>{`Platforms  :  ${videoGamesDetailSL.platforms.map((ele) => ele).join(', ')}`}</p>
                      <p>{`Genres     :  ${videoGamesDetailSL.genres.map((ele) => ele).join(', ')}`}</p>
+                     <p>Description :</p>
+                     <p className={styles.firstItem} dangerouslySetInnerHTML={{__html: videoGamesDetailSL.description, }} />
                      <Link to= '/home'><button className={styles.buttonReturn}>Return</button></Link>                      
                 </div>
             </div> 
