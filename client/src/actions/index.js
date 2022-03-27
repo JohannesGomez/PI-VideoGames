@@ -20,32 +20,27 @@ export const ORDER_BY_NAME        = 'ORDER_BY_NAME';
 export const ORDER_BY_RATING      = 'ORDER_BY_RATING';
 // mensaje de error del search bar
 export const VALID_SEARCH_BAR   = 'VALIDI_SEARCH_BAR'
-
+//
+export const SET_MESSAGE = 'SET_MESSAGE'
+export const INI_MESSAGE = 'INI_MESSAGE'
 
 
 // Traer todos los video game de la api y base de datos o listado de las primeros 15 videojuegos que contengan la palabra ingresada como query parameter
 export function getVideoGame(name){ 
   //console.log('estoy en action getVideoGame', name)
   return async function(dispatch){  
-    try{  
       const getNameVideoGame = await axios.get(`http://localhost:3001/api/videogames?name=${name}`);
-      console.log('estoy en action getVideoGame', getNameVideoGame.data)
-      if(getNameVideoGame.data[0]==='error') return alert('video games not found!') 
-      return dispatch({type:GET_ALL_VIDEOGAME, payload: getNameVideoGame.data })
-    }catch(error) {return error}
-      //{alert(alert('Video Games Not Found!'))}
-      //return error}
+      //console.log('estoy en action getVideoGame', getNameVideoGame.data)
+      //if(getNameVideoGame.data[0]==='error') return alert('video games not found!') 
+      //if(getNameVideoGame.data[0]==='error') return {type:SET_MESSAGE, payload:msg}
+      if(getNameVideoGame.data.length>0) {
+        return dispatch({type:GET_ALL_VIDEOGAME, payload: getNameVideoGame.data })
+      } else{
+        return dispatch({type:SET_MESSAGE, payload:'video no existe!'})}
+
   }
 };
 
-// determinar error en el search
-// export function getVideoGameSearch(name){ 
-//   //console.log('estoy en action getVideoGame', name)
-//   return async function(dispatch){
-//       const getNameVideoGame = await axios.get(`http://localhost:3001/api/videogames?name=${name}`);
-//       return dispatch({type:VALID_SEARCH_BAR, payload: getNameVideoGame.data })
-//   }
-// };
 
 
 // Traer todos los video generos de la base de datos
@@ -82,10 +77,17 @@ export function postVideoGame(payload){
 };
 
 
+// Inicializar los mensajes en el objeto
+export function IniMessage(){
+  return ({type:INI_MESSAGE})
+};
+
+
 // Inicializar el detalle del video juegos en el estado global
 export function getInitDetailVG(){
-    return ({type:INIT_DETAIL_VIDEOGAME})
+    return ({type:INIT_DETAIL_VIDEOGAME, payload:[]})
 };
+
 
 
 // Filtrado por Generos 
@@ -105,3 +107,7 @@ export function sortBy(sortby) {
   return {type: ORDER_BY_RATING, payload:sortby};
 }
 
+// mensaje del sistema
+// export function setMessage(msg) {
+//   return {type:SET_MESSAGE, payload:msg}
+// }

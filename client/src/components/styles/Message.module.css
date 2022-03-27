@@ -1,0 +1,45 @@
+.contenedorMessage {
+     display: flex; 
+     justify-content: center;
+     align-items: center;
+     position: absolute;
+     font-size: 1rem;  
+     margin: 380px;
+     /* margin-left: 600px;
+     padding-left: 20px;
+     padding-right: 20px; */
+     background-color: rgb(235, 131, 131);
+}
+.fondoform{
+
+     background-attachment: fixed; 
+     background-position-y: 0%; 
+     background-repeat: no-repeat; 
+     background-size: cover; 
+     height: 100%; 
+     opacity: 1; 
+     position: absolute; 
+     top: 0px; 
+     transition: opacity 0.3s linear 0s; 
+     width: 50%; 
+     padding: 100px 550px;  
+    
+}
+.divform{
+    
+     border-radius: 20px;
+     font-size: 20px;
+     font-style: normal;
+     line-height: 120%;
+     display: block;
+     background-color:rgb(182, 190, 207);
+     opacity: 0.9;
+     
+     margin-block-start: 0.83em;
+     margin-block-end: 0.83em;
+     margin-inline-start: 0px;
+     margin-inline-end: 0px;
+     font-weight:lighter;
+     padding: 100px;
+     text-align: center;
+ }

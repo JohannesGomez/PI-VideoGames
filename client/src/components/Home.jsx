@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"; // Hooks
 import {useDispatch, useSelector} from 'react-redux';
-import { getVideoGame, getAllGenres,filterGenres,
+import { getVideoGame, getAllGenres,filterGenres,IniMessage,
          filterDbOrCrea, sortBy } from "../actions"; // importar la accion
 import VideoGameCard from './VideoGameCard';
 import Paginado      from './Paginado';
@@ -9,7 +9,7 @@ import SearchBar     from "./SeachBar";
 import stylesHome    from './styles/Home.module.css';
 import stylesGrid    from './styles/VGGrid.module.css';
 import { Spinner } from "./Spinner";
-import { Mensaje } from "./Mensaje";
+import  Message  from './Message'
 
 /*
   que tengo que traerme de back primero para hacer toda la logica de la barra de busqueda ?
@@ -21,8 +21,12 @@ export default function Home() {
     const dispatch      = useDispatch(); // declara la constante dispacth y asi despachar las acciones
     const videoGamesSL = useSelector((state) => state.videoGamesSG); // Traer toda la data de paises de mi estado global / mapStateToProps
     const genresAll = useSelector((state) => state.genresSG); // Traer toda la data de paises de mi estado global / mapStateToProps
-    const errorSL = useSelector((state) => state.errorSG); // Traer toda la data de paises de mi estado global / mapStateToProps
-    //console.log('HOME TODOS VJ',videoGamesSL)
+    const messageSL = useSelector((state) => state.messageSG); // Traer toda la data de paises de mi estado global / mapStateToProps
+    
+    const [messageCL, setmessageCL] = useState({}) // se crea un estado local para el ordenamiento name country
+    
+    console.log('mensaje local ',messageCL)
+    console.log('HOME TODOS VJ',videoGamesSL)
 
     // Ordenamiento
     // const [filtersGenres, setFiltersGenres] = useState('') // se crea un estado local para el ordenamiento name country
@@ -45,6 +49,7 @@ export default function Home() {
 
     
     useEffect (()=> {
+        console.log('estoy en el use Effect...!')
         setIsLoading(true)
         dispatch(getAllGenres());
         dispatch(getVideoGame('')); // ejecutar la accion de forma invocada  // mapDispatchToProps
@@ -87,17 +92,23 @@ export default function Home() {
   }
 
    if(isLoading) {
+     //console.log('spiner...')
      return <Spinner />
    }
-
-    if(!isLoading && videoGamesSL[0]==='error') {
-      return<Mensaje />
-    }
-
+  
+    
 
   return (
 
         <div className={stylesHome.fondoHome}>
+             
+             {
+              messageSL.length>0 && 
+              <Message  
+              message  = {messageSL}
+              />
+             }
+
               {/* Titulo Principal*/}
               <Link to = '/'><h1 className={stylesHome.titleHome}>Video Games App</h1></Link> 
               {/* Procesos de Filtrados por Generos y Video Juegos Creados en la app*/}
@@ -156,6 +167,7 @@ export default function Home() {
                         videoGamesSL =  pasa el valor numerico de toda mi informacion del arreglo 
                         paginado     =  pasa mi constante paginado
                   */}
+
                   <div className={stylesHome.pages}>
 
                     <Paginado 

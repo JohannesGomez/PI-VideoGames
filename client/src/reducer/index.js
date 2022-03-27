@@ -1,6 +1,6 @@
 // Importa las actions types que necesites acá:
 import {GET_ALL_VIDEOGAME, GET_ALL_GENRES, GET_ALL_PLATFORMS, GET_DETAIL_VIDEOGAME, 
-        POST_VIDEOGAME, FILTERS_GENRES, FILTERS_VG_CREATED, ORDER_BY_NAME,
+        POST_VIDEOGAME, FILTERS_GENRES, FILTERS_VG_CREATED, ORDER_BY_NAME, SET_MESSAGE,INI_MESSAGE,
         INIT_DETAIL_VIDEOGAME, ORDER_BY_RATING} from "../actions";
  
 const initialState = {
@@ -9,21 +9,21 @@ const initialState = {
      videoGamesDetailSG :[], // Detalla del video juego
      genresSG: [],           // Genres estado global
      platformsSG: [],        // Plataformas estado global
-     errorSG: {}             // Control de error para el searchs estado global
+     messageSG: {}             // Control de mensajes del estado globales
 };
 
 //
 const rootReducer = (state = initialState, action) => {
     switch(action.type) {
           case GET_ALL_VIDEOGAME: //  todos los videos games api y bd
-               //console.log('estoy REDUCER GET_ALL_VIDEOGAME ', action)
+               console.log('estoy REDUCER GET_ALL_VIDEOGAME ', action.payload)
                return {...state, videoGamesSG : action.payload, videoGamesAuxSG : action.payload}
           case GET_DETAIL_VIDEOGAME: // Detalle del video games
                //console.log('estot en el reduce GET_DETAIL_VIDEOGAME', action.payload)
                return {...state, videoGamesDetailSG: action.payload}
           case INIT_DETAIL_VIDEOGAME: // Inicializar el arreglo del detalle del vj
                //console.log('REDUCER : INIT_DETAIL_VIDEOGAME ')
-               return{...state, videoGamesDetailSG:[]}
+               return{...state, videoGamesDetailSG:action.payload}
           case GET_ALL_GENRES: // Generos
                //console.log('REDUCER : GET_ALL_GENRES: ', action.payload)
                return {...state, genresSG : action.payload}
@@ -42,7 +42,7 @@ const rootReducer = (state = initialState, action) => {
                //let videoGamesAllAux2FSG = state.videoGamesAuxSG
                let filtersVgCreated =  action.payload==='filtCrea' ?
                state.videoGamesAuxSG.filter(ele => ele.created===true): state.videoGamesAuxSG
-               console.log('REDUCER : FILTERS_VG_CREATED', state)
+               //console.log('REDUCER : FILTERS_VG_CREATED', state)
                return {...state, videoGamesSG: filtersVgCreated}
           case ORDER_BY_NAME:   //  ordenamiento ascendente name country
                /*se declara un arreglo y se pregunta por el tiopo de ordenamiento
@@ -51,7 +51,7 @@ const rootReducer = (state = initialState, action) => {
                sort = compara dos valores el campo (name) e ir comprando y colocando
                a la derecha o izquierda o despues en el arreglo
                */
-               console.log('REDUCER : ORDER_BY_NAME 1', action.payload)
+               //console.log('REDUCER : ORDER_BY_NAME 1', action.payload)
                // ordenar Ascentedente por name o ratin
                let orderArrayName = action.payload === 'sortAscName' 
                ?
@@ -62,7 +62,7 @@ const rootReducer = (state = initialState, action) => {
                   state.videoGamesSG.sort(function (a, b) {
                   return b.name.localeCompare(a.name)})
 
-               console.log('REDUCER : ORDER_BY_NAME YA ORDENADO :', orderArrayName)
+               //console.log('REDUCER : ORDER_BY_NAME YA ORDENADO :', orderArrayName)
                return {...state,videoGamesSG: orderArrayName}
           case ORDER_BY_RATING:   //  ordenamiento ascendente name country
                /*se declara un arreglo y se pregunta por el tiopo de ordenamiento
@@ -85,7 +85,13 @@ const rootReducer = (state = initialState, action) => {
                    return 0;
                })
                return {...state,videoGamesSG: orderArrayRating}
-
+               case SET_MESSAGE :
+                    console.log('Reducer Estoy en mensajes ', action.payload, state)
+                    return {...state, messageSG: action.payload}
+               case INI_MESSAGE :
+                         console.log('Reducer inicializando mensaje ')
+                         return {...state, messageSG: {}}
+          
        default:return state;
    }
 }

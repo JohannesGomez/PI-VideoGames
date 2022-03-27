@@ -18,8 +18,8 @@ export default function VideoGameDetail(){
     const dispatch = useDispatch()
     useEffect(()=>{
         setIsLoading(true)
-        dispatch(getIdVideoGame(idVideogame))
         dispatch(getInitDetailVG())
+        dispatch(getIdVideoGame(idVideogame))
         setIsLoading(false)
     },[])
 

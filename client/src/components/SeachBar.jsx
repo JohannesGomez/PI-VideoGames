@@ -9,7 +9,9 @@ export default function SearchBar(){
     const [isLoading, setIsLoading] = useState(true);
     const dispatch = useDispatch()
 //    const videoGameSL = useSelector((state) => state.videoGamesSG);
-  //  const erroresSL = useSelector((state) => state.errorSG); // Traer toda la data de paises de mi estado global / mapStateToProps
+    const messageSL = useSelector((state) => state.messageSG); // Traer toda la data de paises de mi estado global / mapStateToProps
+    const videoGamesSL = useSelector((state) => state.videoGamesSG); // Traer toda la data de paises de mi estado global / mapStateToProps
+
     const [name, setName] = useState('')
     
 //    let msgSG  = useSelector((state) => state.message); // Traer toda la data de paises de mi estado global / mapStateToProps
@@ -29,7 +31,10 @@ export default function SearchBar(){
            setIsLoading(true)
            //console.log('estoy en search1...', videoGameSL)
            dispatch(getVideoGame(name))  // name es el estado local
-           //console.log('estoy en search2...',videoGameSL)
+        //    if(messageSL.length>0) {
+        //      dispatch(getVideoGame(''));
+        //      console.log('estoy en search...',messageSL.length, videoGamesSL)
+        //    }
            setIsLoading(false)
            //console.log('paso por name ', erroresSL) 
            setName('')  // setaer mi estado local

@@ -26,9 +26,9 @@ router.get('/', async (req, res, next) => {
          let videoGamesApiAux = allVideoGamesApiyBd.filter((ele) => ele.name.toLowerCase().includes(name.toLowerCase()))
          console.log('/Back/ __GET /videogames Listado 15 video games ap y bd ', videoGamesApiAux.length)         
          
-         if(videoGamesApiAux.length===0) videoGamesApiAux.push('error')
-
-         return res.status(200).send(videoGamesApiAux.slice(0,16))
+//       if(videoGamesApiAux.length===0) videoGamesApiAux.push('error')
+//         if(videoGamesApiAux.length===0) return res.status(200).send('video not exist!');
+         return res.status(200).send(videoGamesApiAux.slice(0,16));
       }        
       return res.status(200).send(allVideoGamesApiyBd) // retornar todos los v.g. api y bd
   }catch(error) {next(error)}
