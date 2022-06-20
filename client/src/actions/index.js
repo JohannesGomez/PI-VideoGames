@@ -29,7 +29,7 @@ export const INI_MESSAGE = 'INI_MESSAGE'
 export function getVideoGame(name){ 
   //console.log('estoy en action getVideoGame', name)
   return async function(dispatch){  
-      const getNameVideoGame = await axios.get(`http://localhost:3001/api/videogames?name=${name}`);
+      const getNameVideoGame = await axios.get(`/api/videogames?name=${name}`);
       //console.log('estoy en action getVideoGame', getNameVideoGame.data)
       //if(getNameVideoGame.data[0]==='error') return alert('video games not found!') 
       //if(getNameVideoGame.data[0]==='error') return {type:SET_MESSAGE, payload:msg}
@@ -46,7 +46,7 @@ export function getVideoGame(name){
 // Traer todos los video generos de la base de datos
 export function getAllGenres(){ // 
     return async function(dispatch){
-    const getAllGenres = await axios.get('http://localhost:3001/api/genres');
+    const getAllGenres = await axios.get('/api/genres');
     return dispatch({type:GET_ALL_GENRES, payload: getAllGenres.data })
   }
 };
@@ -54,7 +54,7 @@ export function getAllGenres(){ //
 // Traer todos tipos de plataformas  base de datos
 export function getAllPlatforms(){ // 
   return async function(dispatch){
-    const getAllPlatforms = await axios.get('http://localhost:3001/api/platforms');
+    const getAllPlatforms = await axios.get('/api/platforms');
     return dispatch({type:GET_ALL_PLATFORMS, payload: getAllPlatforms.data })
   }
 };
@@ -63,7 +63,7 @@ export function getAllPlatforms(){ //
 export function getIdVideoGame(idVideGame){
   console.log('estoy en action getIdVideoGame', idVideGame)
   return async function(dispatch) {
-    const getIdVideoGame = await axios.get(`http://localhost:3001/api/videogame/${idVideGame}`)
+    const getIdVideoGame = await axios.get(`/api/videogame/${idVideGame}`)
     return dispatch({type:GET_DETAIL_VIDEOGAME, payload: getIdVideoGame.data})
   }
 };
@@ -71,7 +71,7 @@ export function getIdVideoGame(idVideGame){
 // Grabar los datos del formulario controlado
 export function postVideoGame(payload){
   return async function(dispatch){    
-      await axios.post('http://localhost:3001/api/videogame',payload); // axios.get devuelve la respuesta en un data
+      await axios.post('/api/videogame',payload); // axios.get devuelve la respuesta en un data
       return dispatch({type:POST_VIDEOGAME})
   }
 };
